@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vnlla magazine - Web3</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Web3 specific styling */
+        .web3-cover {
+            height: 50vh; /* Smaller cover height */
+            margin-bottom: 40px;
+        }
+        
+        .web3-cover .cover-content {
+            background: rgba(22, 28, 36, 0.8); /* Darker overlay for tech feel */
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 87, 34, 0.3);
+        }
+        
+        .web3-cover .issue-tag {
+            background: #ff5722;
+            color: white;
+        }
+        
+        .web3-section {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .web3-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+        
+        .web3-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-color: #ff5722;
+        }
+        
+        .web3-category {
+            color: #ff5722;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .blockchain-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+        /* Link Container */  
+        .link-container {  
+            width: 100%;  
+            max-width: 300px;  
+            text-align: center;  
+            position: relative;
+            padding-bottom: 3px;
+
+        }  
+
+        .feature-gameimage {
+            width: 100%; /* Takes full width of parent container */
+            height: 200px; /* Fixed height */
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            position: relative; /* For absolute positioning of image */
+        }
+
+        .feature-gameimage img {
+            width: 100%; /* Fills container width */
+            height: 100%; /* Fills container height */
+            object-fit: contain; /* Changed from 'cover' to 'contain' to prevent zoom/crop,cause fucking cropping issue of images lmao */
+            object-position: center;
+            position: absolute; /* consistent positioning */
+        }
+
+        /* Link Button Style */  
+        .link-button {  
+            display: block;  
+            max-width: auto;
+            background: #4d4070;  
+            color: white;  
+            padding: 12px 20px; 
+            align-content: center;
+            margin-top: auto;
+            border-radius: 8px;  
+            text-decoration: none;  
+            font-weight: bold;  
+            transition: all 0.3s ease;  
+        }  
+        .link-button:hover {  
+            background: #333;  
+            transform: translateY(-2px);  
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+        }  
+        
+        /* Side Navbar */
+        .side-navbar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(22, 28, 36, 0.9);
+            padding: 20px 15px;
+            border-radius: 12px;
+            z-index: 100;
+            border: 1px solid rgba(255, 87, 34, 0.3);
+        }
+
+        .side-navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-navbar li {
+            margin: 15px 0;
+        }
+
+        .side-navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        .side-navbar a:hover {
+            color: #ff5722;
+            background: rgba(255, 87, 34, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">vnlla<span>magazine</span></a>
+            <nav class="nav-menu">
+                <a href="./profile.html" class="nav-link">PROFILE</a>
+                <a href="./projects.html" class="nav-link">PROJECTS</a>
+                <a href="#" class="nav-link">SKILLS</a>
+                <a href="./connect.html" class="nav-link">CONNECT</a>
+                <a href="./web3.html" class="nav-link active">WEB3</a>
+            </nav>
+        </div>
+    </header>
+   
+    <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <ul>
+                <li><a href="#web3-projects">Web3 Core</a></li>
+                <li><a href="#web3-gaming">Web3 Gaming</a></li>
+                <li><a href="#web3-depin">Web3 DePIN</a></li>
+                <li><a href="#web3-journey">Web3 Journey</a></li>
+                
+            </ul>
+        </nav>
+
+    <!-- Front Cover -->>    
+    <div class="container">
+        <section class="magazine-cover web3-cover">
+            <div class="cover-content">
+                <div class="issue-tag">WEB3 EDITION</div>
+                <h1 class="cover-title">Decentralized Future</h1>
+                <p class="cover-subtitle">Exploring blockchain and decentralized applications</p>
+            </div>
+        </section>
+        <h2>Disclaimer: Some links may use my referral code, you may wish to visit the apps directly without using the referral links. Projects posted are what I support, Please DYOR!</h2>
+
+        <!-- Web3 Projects Section -->
+        <section id="web3-projects" class="web3-section">
+            <h2 class="section-title">Get Started on Web3 Here - My Recommendations</h2>
+            <h2 class="Exchanges and DeFi Protocols">Explore Crypto Exchanges and DeFi Protocols</h2>
+            <div class="featured-grid">
+
+                <div class="web3-card">
+                    <div class="feature-image">
+                        <img src="./images-icons/okx-logo.png" alt="#">
+                    </div>
+                    <div class="feature-content">
+                        <div class="web3-category">Centralized Crypto Exchange</div>
+                        <h3 class="feature-title">OKX</h3>
+                        <p class="feature-excerpt">OKX is a leading global cryptocurrency exchange offering spot, futures, and margin trading, along with DeFi and Web3 services. Known for its robust security, high liquidity, and innovative products like copy trading and earning tools, OKX caters to both beginners and advanced traders. With support for hundreds of cryptocurrencies and a user-friendly interface, it's a top choice for crypto enthusiasts worldwide.</p>
+                        <div class="link-container">
+                            <a href="https://okx.com/join/71184010" target="_blank" class="link-button">Sign-up on OKX Now</a>
+                        </div>
+                        <br>
+                        <div class="link-container">
+                            <a href="exchanges.html" target="_blank" class="link-button">Check Out Other Crypto Exchanges</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="web3-card">
+                    <div class="feature-image">
+                        <img src="./images-icons/metamask-logo.png" alt="metamask-wallet">
+                    </div>
+                    <div class="feature-content">
+                        <div class="web3-category">Self-Custodial Digital Currency Wallet</div>
+                        <h3 class="feature-title">MetaMask</h3>
+                        <p class="feature-excerpt">MetaMask is a popular cryptocurrency wallet and gateway to decentralized apps on the Ethereum blockchain. Available as a browser extension and mobile app, it allows users to securely store, send, and swap Ethereum and ERC-20 tokens. With built-in Web3 integration, MetaMask makes it easy to interact with DeFi platforms, NFT marketplaces, and blockchain games. Its user-friendly interface and strong security features make it a top choice for crypto beginners and experts alike.</p>
+                        
+                        <div class="link-container">
+                        <a href="https://www.youtube.com/watch?v=Af_lQ1zUnoM" target="_blank" 
+                        class="link-button">Learn How to Set-up Wallet</a>
+                        </div>
+                        <br>
+                        <div class="link-container">
+                            <a href="wallets.html" target="_blank" 
+                            class="link-button">Check Out Other Web3 Wallets Here</a>
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="web3-card">
+                    <div class="feature-image">
+                        <img src="./images-icons/opensea-logo.jpg" alt="DeFi Project">
+                    </div>
+                    <div class="feature-content">
+                        <div class="web3-category">NFT Trading Platform</div>
+                        <h3 class="feature-title">OpenSea</h3>
+                        <p class="feature-excerpt">OpenSea is the world's largest NFT marketplace, where users can buy, sell, and discover digital collectibles, art, gaming items, and more. Built on Ethereum, Polygon, and other blockchains, it supports ERC-721 and ERC-1155 tokens, making it easy for creators and collectors to trade NFTs with low fees.
+
+                        With a user-friendly interface, wallet integration (like MetaMask), and gas-free listings (on Polygon), OpenSea is the go-to platform for NFT enthusiasts.</p>
+
+                        <div class="link-container">
+                        <a href="https://www.opensea.io" target="_blank" class="link-button">Go to OpenSea</a>
+                        </div>
+                        <br>
+                        <div class="link-container">
+                            <a href="nftmarket.html" target="_blank" 
+                            class="link-button">Check Out Other NFT Markets Here</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Web3 Gaming -->
+        <section id="web3-gaming" class="web3-section">
+            <h2 class="section-title">Web3 Gaming - The New Era of Gaming, Full Ownership of your Character and Items</h2>
+            <div class="profile-section" style="background: none; box-shadow: none; padding: 0;">
+                <div class="profile-content" style="padding: 0;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        
+                        <div class="web3-card" style="padding: 25px;">
+                            <h3 style="color: #ff5722; margin-bottom: 15px;">Pixel Heroes Adventure</h3>
+                            <div class="feature-gameimage">
+                                <img src="./images-icons/pha-logo.png" alt="pha-logo">
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li style="margin-bottom: 8px;">• Play-to-Earn: Earn $MGT and $ADVTR tokens & NFT rewards through battles, quests, and PvP.</li>
+                                <li style="margin-bottom: 8px;">• NFT Heroes: Collect, trade, and upgrade unique pixel-art characters (stored on-chain).</li>
+                                <li style="margin-bottom: 8px;">• Integrated with Ronin Network</li>
+                                <div class="link-container">
+                                <a href="https://dapp.pixelheroes.io/" target="_blank" class="link-button">Play Pixel Heroes Adventure Now</a>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="web3-card" style="padding: 25px;">
+                            <h3 style="color: #ff5722; margin-bottom: 15px;">Axie Infinity</h3>
+                            <div class="feature-gameimage">
+                                <img src="./images-icons/full-axie-infinity-logo.png" alt="axielogo">
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li style="margin-bottom: 8px;">• NFT-based play-to-earn game launched in 2018 by Sky Mavis</li>
+                                <li style="margin-bottom: 8px;">• Players collect, breed, and battle fantasy creatures</li>
+                                <li style="margin-bottom: 8px;">• In-game currency: Smooth Love Potion (SLP) and Axie Infinity Shards (AXS). Players can earn real money by selling Axies and tokens</li>
+                                <div class="link-container">
+                                    <a href="https://app.axieinfinity.com/" target="_blank" class="link-button">Check out Axie Infinity Now</a>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="web3-card" style="padding: 25px;">
+                            <h3 style="color: #ff5722; margin-bottom: 15px;">Lumiterra</h3>
+                            <div class="feature-gameimage">
+                                <img src="./images-icons/lumiterra.png" alt="lumiterralogo">
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li style="margin-bottom: 8px;">• Blockchain-based play-to-earn game developed by Fenix Games</li>
+                                <li style="margin-bottom: 8px;">• Players explore, battle, and build in an open fantasy world. Uses Polygon blockchain technology for NFT assets</li>
+                                <li style="margin-bottom: 8px;">• In-game currency: $LUMI token for governance and transactions</li>
+                                <div class="link-container">
+                                    <a href="https://lumiterra.net/" target="_blank" class="link-button">Check out Lumittera Now</a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="link-container">
+                <a href="./w3games.html" target="_blank" class="link-button">See More Web3 Games Here</a>
+            </div>
+        </section>
+
+        <!-- Web3 DePIN -->
+        <section id="web3-depin" class="web3-section">
+            <h2 class="section-title">Web3 DePIN - Contribute, Earn, Repeat.</h2>
+            <div class="profile-section" style="background: none; box-shadow: none; padding: 0;">
+                <div class="profile-content" style="padding: 0;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div class="web3-card" style="padding: 25px;">
+                            <h3 style="color: #ff5722; margin-bottom: 15px;">Bless Network</h3>
+                            <div class="feature-image">
+                                <img src="./images-icons/bless-logo.png" style="border-radius: 20%; background-color: white;">
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li style="margin-bottom: 8px;">Bless Network leverages blockchain to decentralize and incentivize real-world infrastructure.</li>
+                                <li style="margin-bottom: 8px;">• AI & Data Powerhouse - Focuses on decentralized AI training, data storage, and compute resources for Web3 applications.</li>
+                                <li style="margin-bottom: 8px;">• Token Incentives - Users earn rewards by contributing hardware (GPUs, storage, sensors) to the network.</li>
+                                <li style="margin-bottom: 8px;">• Scalable & Eco-Friendly - Optimizes resource sharing to reduce waste and lower costs for AI/ML development.</li>
+                                
+                                <div class="link-container">
+                                <a href="https://bless.network/dashboard?ref=GC0LXP" target="_blank" class="link-button">Join Bless Network</a>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="web3-card" style="padding: 25px;">
+                            <h3 style="color: #ff5722; margin-bottom: 15px;">Gradient Network</h3>
+                            <div class="feature-image">
+                                <img src="./images-icons/gradient-logo.jpg" style="border-radius: 20%; background-color: whitesmoke;">
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li style="margin-bottom: 8px;"> A blockchain-based network designed to democratize access to distributed computing resources for AI/ML workloads.</li>
+                                <li style="margin-bottom: 8px;">• Incentivized GPU Sharing - Users contribute idle GPU power to the network and earn rewards in native tokens.</li>
+                                <li style="margin-bottom: 8px;">• Scalable AI Training - Enables cost-efficient, decentralized machine learning model training by pooling global compute resources.</li>
+                                <li style="margin-bottom: 8px;">• Sustainable & Efficient - Reduces reliance on centralized cloud providers, lowering costs and energy waste.</li>
+                                <div class="link-container">
+                                    <a href="https://app.gradient.network/signup?code=KPEO4H" target="_blank" class="link-button">Join Gradient Network</a>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="web3-card" style="padding: 25px;">
+                            <h3 style="color: #ff5722; margin-bottom: 15px;">LayerEdge Network</h3>
+                            <div class="feature-image">
+                                <img src="./images-icons/layeredge-logo.png" style="border-radius: 20%; background-color: whitesmoke;">
+                            </div>
+                            <ul style="list-style-type: none;">
+                                <li style="margin-bottom: 8px;">A scalable, interoperable network designed to support multi-chain ecosystems with seamless layer transitions.</li>
+                                <li style="margin-bottom: 8px;">• Optimized for DeFi & dApps - Provides high-throughput, low-latency infrastructure for decentralized applications and financial protocols.</li>
+                                <li style="margin-bottom: 8px;">• Hybrid Consensus Mechanism - Combines PoS (Proof-of-Stake) and DAG (Directed Acyclic Graph) for efficiency and security.</li>
+                                <li style="margin-bottom: 8px;">• For Validators: Earn rewards by securing the network via staking.</li>
+                                <div class="link-container">
+                                    <a href="https://dashboard.layeredge.io" target="_blank" class="link-button">Join Gradient Network</a>
+                                    <li>Use Code WA8HliCM on signup</li>
+                                </div>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="link-container">
+                <a href="./depin.html" target="_blank" class="link-button">See More DePIN Projects Here</a>
+            </div>
+        </section>
+
+        <!-- Web3 Activity Timeline -->
+        <section id="web3-journey" class="web3-section">
+            <h2 class="section-title">Web3 Journey</h2>
+            <div class="activity-section" style="background: none; box-shadow: none; padding: 0;">
+
+                <div class="activity-item">
+                    <div class="activity-date">2023-2025</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Going Further in Crypto</div>
+                        <div class="activity-desc">In 2023, I fully immersed myself in crypto - transforming from casual observer to active participant. I:<br><br>
+                            
+                            • Mastered Web3 Gaming - Went beyond Axie to explore emerging play-to-earn ecosystems, analyzing tokenomics and gameplay loops. <br><br>
+                            • Became an Airdrop Hunter - Developed strategies to identify promising projects early, participating in numerous campaigns (with mixed results). <br><br>
+                            • Leveled Up My Trading - Transitioned from HODLing to technical analysis, learning to read charts and manage risk more effectively (still working on risk management though). <br><br>
+                            
+                            This period marked my shift from crypto-curious to crypto-committed - making mistakes, learing and adapting, scoring wins, and constantly expanding my skill set in this fast-moving space.</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-date">October 2024 - Current</div>
+                    <div class="activity-content">
+                        <div class="activity-title">UNIDOCCS Development and Testing</div>
+                        <div class="activity-desc">I'm currently developing an innovative decentralized documents platform, pushing the boundaries of how we create, share, and verify digital content. This work recently earned academic recognition when I successfully defended my research papers at the 1st CBA Student Research Colloquium on April 21, 2025, hosted by Baguio Central University. The project represents my vision for a more transparent, secure, and user-controlled approach to document management - combining my crypto experience with practical Web3 solutions.</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-date">February 2019 - 2021</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Introduction to Web3</div>
+                        <div class="activity-desc">My first real dive into crypto wasn't through trading—it was through playing. I discovered Axie Infinity at its peak, back when "scholarships" were turning gamers worldwide into earners. Under a strict but skilled Korean manager, I leveled up fast, learning the meta, optimizing SLP grinding, and even ranking among the top scholars in our guild. The late night wake-up calls for energy resets and the thrill of cashing out AXS rewards felt like a crazy hybrid of gaming and a part-time job. But when my manager returned to Korea and the Axie economy started shifting, I cashed out my last earnings and moved on—with a permanent appreciation for how Web3 could turn play into real value.</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-date">2020</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Deeper Dive Into Crypto</div>
+                        <div class="activity-desc">I dipped deeper into crypto during the 2020 lockdowns, back when everyone was stuck at home. I started buying small amounts of ETH and other altcoins, riding the 2021 bull run highs and suffering through 'I should have held longer' and 'I should have sold earlier'. As a top scholar under a strict Korean manager, I lived the play-to-earn life: waking up at 4AM to optimize energy, studying Axie metas like its a full-time job, and cashing out SLP and AXS while the economy boomed (then it crashed). It was my first taste of Web3's real-world utility. <br><br> Now? I'm still here, but wiser. NFTs taught me speculation, DeFi taught me risk, and Axie taught me that even "the future of gaming" needs reality checks. Web3 isn't just charts—it's communities, ownership, and sometimes harsh wake-up calls.</div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3 class="footer-title">Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="./profile.html">Profile</a></li>
+                    <li><a href="./projects.html">Projects</a></li>
+                    <li><a href="#">Resume</a></li>
+                    <li><a href="#">Skills</a></li>
+                    <li><a href="./connect.html">Connect</a></li>
+                    <li><a href="./web3.html">Web3</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Web3 Links</h3>
+                <ul class="footer-links">
+                    <li><a href="https://etherscan.io/" target="_blank">Etherscan</a></li>
+                    <li><a href="https://opensea.io/" target="_blank">OpenSea</a></li>
+                    <li><a href="https://uniswap.org/" target="_blank">Uniswap</a></li>
+                    <li><a href="https://polygon.technology/" target="_blank">Polygon</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Discord</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <div>©2025 Jeff C. Pais | Web3 Portfolio</div>
+        </div>
+    </footer>
+</body>
+</html>

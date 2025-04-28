@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEX and DEX</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0f1218;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid #2d3748;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 20px;
+        }
+        
+        .title .emoji {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .date-nav {
+            background-color: #a0b6e0;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        
+        .search {
+            background-color: #1a202c;
+            border-radius: 5px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .filter-btn, .sort-btn {
+            background-color: #1a202c;
+            border-radius: 5px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(to bottom right, #3a1c71, #d76d77);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card.black {
+            background: linear-gradient(to bottom right, #494949, #0f0f0f);
+        }
+        .card.red {
+            background: linear-gradient(to bottom right, #8a0303, #d95252);
+        }
+        
+        .card.purple {
+            background: linear-gradient(to bottom right, #4d18a1, #9970d8);
+        }
+        
+        .card.green {
+            background: linear-gradient(to bottom right, #134e5e, #20a576);
+        }
+        
+        .card.blue {
+            background: linear-gradient(to bottom right, #0b3866, #4e8cff);
+        }
+
+        .card.yellow{
+            background: linear-gradient(to bottom right, #3b3b3a, #ffff70);
+        }
+        
+        .status-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 5px 12px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            max-width: fit-content;
+            margin-bottom: 5px;
+        }
+        
+        .card-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+   
+        
+        .footer {
+            border-top: 1px solid #2d3748;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        
+        .time {
+            color: #a0aec0;
+        }
+
+        /* Link Container */  
+        .link-container {  
+            width: 100%;  
+            max-width: 300px;  
+            text-align: center;  
+            position: relative;
+            padding-bottom: 3px;
+
+        }  
+        /* Link Button Style */  
+        .link-button {  
+            display: block;  
+            max-width: auto;
+            background: #b59aff;  
+            color: white;  
+            padding: 12px 20px; 
+            align-content: center;
+            margin-top: auto;
+            border-radius: 8px;  
+            text-decoration: none;  
+            font-weight: bold;  
+            transition: all 0.3s ease;  
+        }  
+        .link-button:hover {  
+            background: #333;  
+            transform: translateY(-2px);  
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+        }  
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="title">
+                <span class="emoji">🔥</span>
+                <span>Centralized Exchanges and Decentralized Exchanges</span>
+            </div>
+            
+        </div>
+    </div>
+    
+    <h1>Centralized Exchanges</h1>
+    <div class="grid">
+       
+        <div class="card black">
+            <div class="card-title"><img src="./images-icons/OKX_logo.svg" alt="okx Logo" width="150" height="50"></div>
+            <div class="card-description">OKX is a leading global cryptocurrency exchange offering spot, futures, and margin trading, along with DeFi and Web3 services.</div>
+            <div class="card-footer" >
+                <div class="link-container">
+                <a href="https://okx.com/join/71184010" target="_blank" class="link-button">Go to OKX</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card blue">
+            <div class="card-title"><img src="./images-icons/Logo_Biget.svg.png" alt="bitget Logo" width="150" height="50"></div>
+            <div class="card-description">Bitget is a derivatives-focused cryptocurrency exchange known for its copy trading features and sponsorship deals with sports entities like Juventus FC.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                <a href="" target="_blank" class="link-button">Go to Bitget</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card black">
+            <div class="card-title"><img src="./images-icons/Bybit_Logo.svg" alt="bybit Logo" width="150" height="50"></div>
+            <div class="card-description">Bybit is a cryptocurrency exchange platform that specializes in crypto derivatives trading with a user-friendly interface and high liquidity.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                <a href="" target="_blank" class="link-button">Go to Bybit</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card green">
+            <div class="card-title"><img src="./images-icons/KUCOIN.svg.png" alt="kucoin Logo" width="150" height="50"></div>
+            <div class="card-description">KuCoin is a global cryptocurrency exchange platform known as "The People's Exchange" that offers a wide variety of trading pairs and innovative features like trading bots.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="" target="_blank" class="link-button">Go to KuCoin</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card blue">
+            <div class="card-title"><img src="./images-icons/Mexcglobal.svg" alt="mexc Logo" width="150" height="50"></div>
+            <div class="card-description">MEXC is a user-friendly global cryptocurrency exchange that supports a wide range of altcoins and emerging tokens with competitive trading fees.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                <a href="" target="_blank" class="link-button">Go to MEXC</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card yellow">
+            <div class="card-title"><img src="./images-icons/Binance_logo.svg.png" alt="binance Logo" width="150" height="50"></div>
+            <div class="card-description">Binance is the world's largest cryptocurrency exchange by trading volume, offering hundreds of digital assets and a comprehensive ecosystem of crypto services.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="" target="_blank" class="link-button">Go to Binance</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <h1>Decentralized Exchanges</h1>
+    <h2>Proceed with caution, Decentralized Exchanges are more technical and require deeper research.</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="card-title"><img src="./images-icons/meteora.png" alt="meteora Logo" max-width="150" height="50"></div>
+            <div class="card-description">---</div>
+            <div class="card-footer">---</div>
+        </div>
+    </div>
+
+    
+    <div class="footer">
+        <span>Exchanges posted may use my referral code.</span>
+    </div>
+</body>
+</html>
