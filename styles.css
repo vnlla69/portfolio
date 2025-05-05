@@ -69,7 +69,7 @@ header {
     border-bottom: 2px solid #ff5722;
 }
 
-/* Magazine Cover */
+/* magazine cover */
 .magazine-cover {
     position: relative;
     height: 80vh;
@@ -96,26 +96,26 @@ header {
 
 .left-half {
     clip-path: polygon(0 0, 60% 0, 40% 100%, 0% 100%);
-    filter: brightness(0.8); /* Slightly dimmed by default */
+    filter: brightness(0.8); /* slight dim */
 }
 
 .right-half {
     clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);
-    filter: brightness(0.8); /* Slightly dimmed by default */
+    filter: brightness(0.8); /* slightly dim */
 }
 
 /* Hover effects */
 .left-half:hover {
-    filter: brightness(1.1) contrast(1.05); /* Highlight left */
-    z-index: 2; /* Bring forward */
+    filter: brightness(1.1) contrast(1.05); /* highlight left */
+    z-index: 2; /* bring forward */
 }
 
 .right-half:hover {
-    filter: brightness(1.1) contrast(1.05); /* Highlight right */
-    z-index: 2; /* Bring forward */
+    filter: brightness(1.1) contrast(1.05); /* highlight right */
+    z-index: 2; /* bring forward */
 }
 
-/* Dim the other half when one is hovered */
+/* dim the other half when one is hovered */
 .left-half:hover ~ .right-half {
     filter: brightness(0.6);
 }
@@ -171,6 +171,7 @@ header {
 
 .featured-grid {
     display: grid;
+    max-height: fit-content;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 50px;
