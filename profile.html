@@ -5,6 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vnlla magazine - Profile</title>
     <link rel="stylesheet" href="styles.css">
+<style>
+.link-button {  
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    background: #a084ee;  
+    color: white;  
+    padding: 12px 20px; 
+    border-radius: 8px;  
+    text-decoration: none;  
+    font-weight: bold;  
+    transition: all 0.3s ease;
+    position: relative;
+    width: 150px; /* adjust as needed */
+    height: 44px; /* fixed height */
+    box-sizing: border-box; /* prevents padding from expanding size */
+}
+
+/* hide text and show arrow on hover */
+.link-button:hover {
+    background: #8a24ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(58, 58, 58, 0.1);
+    color: transparent; /* hide text */
+}
+
+/* hidden by default */
+.link-button::after {
+    content: "";
+    position: absolute;
+    left: 50%; /* centered */
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0); /* start tiny and invisible */
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+/* reveal arrow on hover (centered, same size) */
+.link-button:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    
+}
+
+.read-more:after {
+    content: "▼";
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.read-more.active:after {
+    content: "▲";
+}
+
+/* UPDATED: hidden content now displays outside the card */
+.hidden-content {
+    display: none;
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    grid-column: 1 / -1; /* make the hidden content span all columns */
+    width: 100%; /* ensure it takes up full width */
+}
+
+/* style for the certificate images */
+.detail-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* creates exactly 3 equal columns */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.detail-gallery img {
+    width: 500px;
+    max-height: 300px;
+    object-fit: cover; /* maintains aspect ratio while filling the fixed dimensions */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1600px) {
+    .detail-gallery {
+        grid-template-columns: repeat(2, 1fr); /* switch to 2 columns on medium screens */
+    }
+    .detail-gallery img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1; /* maintains square shape */
+    }
+}
+@media (max-width: 1000px) {
+    .detail-gallery {
+        grid-template-columns: 1fr; /* single column on smaller screens */
+    }
+}
+/* certificate details styling */
+.certificate-details {
+    margin-bottom: 15px;
+}
+
+.certificate-details h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.detail-list {
+    padding-left: 10px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* fix for certificate section feature cards */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 30px;
+    position: relative;
+}
+
+/* for the certificate feature images */
+.certificate-card .feature-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+}
+
+.certificate-card .feature-image img {
+    max-height: 150px;
+    width: auto;
+    object-fit: contain;
+}
+
+</style>
     
 </head>
 <body>
@@ -23,6 +168,8 @@
     </header>
 
     <div class="container">
+
+        <!--cover-->
         <section class="magazine-cover">
             <div class="split-cover">
                 <div class="cover-half left-half" style="background-image: url('./images/uc-technosprint\ cut.jpg');"></div>
@@ -35,12 +182,13 @@
             </div>
         </section>
 
+        <!--profile-->
         <section class="profile-section">
             <div class="profile-image" style="background-image: url(./profile/photo_2025-04-26_16-47-55.jpg);"></div>
             <div class="profile-content">
                 <h2 class="profile-title">About Me</h2>
                 <p class="profile-subtitle">Computer Science Student & Digital Creator</p>
-                <p class="profile-text">At 26, I'm balancing my third year of college studies with an emerging career in web development and blockchain technology. My passion for innovation drives me to explore the cutting edge of digital experiences.</p>
+                <p class="profile-text">At 26, I'm balancing my college studies with an emerging career in web development and blockchain technology. My passion for innovation drives me to explore the cutting edge of digital experiences.</p>
                 <p class="profile-text">Currently pursuing a Computer Science degree at Baguio Central University, I'm combining academic knowledge with practical experience in creating responsive, user-centered digital solutions.</p>
                 <p class="profile-text">------------</p>
                 <div class="profile-stats">
@@ -60,6 +208,7 @@
             </div>
         </section>
 
+        <!--skills-->
         <section>
             <h2 class="section-title">Core Skills</h2>
             <div class="featured-grid">
@@ -97,30 +246,7 @@
             </div>
         </section>
 
-        <section class="activity-section" style="background-color: beige;">
-            <h2 class="section-title">Current NFT HODLings</h2>
-        <div class="featured-grid" style="grid-template-columns: auto;">
-            <div class="feature-card" style="max-width: 200px;">
-                <div class="feature-image">
-                    <img src="./images-nft/CJB4MRr4Q-iiS9VYP5Zw6POwXphCZd0RaalJTj2GWXg.png" alt="sharkz #8042">
-                </div>
-                <div class="feature-content">
-                    <h3>Sharkz #8042</h3>
-                </div>
-            </div>
-
-            <div class="feature-card" style="max-width: 200px;">
-                <div class="feature-image" >
-                    <img src="./images-nft/qVkbmB4Q3hbX2-h-2Y768H4XLg05UwgRhglh6hzNAnI.png" alt="sharkz #2687">
-                </div>
-                <div class="feature-content">
-                    <h3>Sharkz #2687</h3>
-                </div>
-            </div>
-        </div>
-        </section>
-
-
+         <!-- education -->
         <section class="activity-section" style="background-color: beige;" >
             <h2 class="section-title">Education Timeline</h2>
         <div class="featured-grid" style="border-radius: 10px;">
@@ -147,7 +273,7 @@
             </div>
 
             <div class="feature-card">
-                <div class="activity-date">2015-2019</div>
+                <div class="activity-date">2015-2017</div>
                 <div class="activity-content">
                     <div class="activity-title">Saint Louis University</div>
                     <div class="activity-desc">Took up 1st and 2nd Year Civil Engineering. Developed deeper understanding on critical thinking and a better perspective on learning.</div>
@@ -158,10 +284,10 @@
             </div>
 
             <div class="feature-card">
-                <div class="activity-date">2019-2020</div>
+                <div class="activity-date">2017</div>
                 <div class="activity-content">
                     <div class="activity-title">University of the Cordilleras</div>
-                    <div class="activity-desc">Started the spark on coding and exploration into web development, this is the critical turning point of my current course.</div>
+                    <div class="activity-desc">Started the spark on programming and exploration into web development, this is the critical turning point for my current course.</div>
                 </div>
                 <div class="feature-image">
                     <img src="./images/ucbuilding.jpg" alt="school">
@@ -169,10 +295,10 @@
             </div>
 
             <div class="feature-card">
-                <div class="activity-date">2022-Present</div>
+                <div class="activity-date">2017-Present</div>
                 <div class="activity-content">
                     <div class="activity-title">Baguio Central University</div>
-                    <div class="activity-desc">Currently pursuing Bachelor's degree in Computer Science with focus on web development.</div>
+                    <div class="activity-desc">Currently pursuing Bachelor's degree in Computer Science with focus on web development. I took a 3-year break from my studies to focus on work, and then the pandemic arrived, further extending my academic hiatus.</div>
                 </div>
                 <div class="feature-image">
                     <img src="./images/bcu.jpg" alt="school">
@@ -181,45 +307,212 @@
         </div>
         </section>
 
+        <!-- competitions -->
         <section class="activity-section" style="background-color: beige;">
-            <h2 class="section-title">Certifications</h2>
-            <div class="featured-grid">
-                <div class="feature-card">
+            <h2 class="section-title">Competitions</h2>
+            <div class="certifications-grid">
+                <!--robolution-->
+                <div class="feature-card certificate-card">
                     <div class="feature-image">
-                        <img src="/api/placeholder/400/300" alt="Front End Certification">
+                        <img src="./images/487835604_1195673775679717_8318957960799366_n.jpg" alt="Robolution Certificate">
                     </div>
                     <div class="feature-content">
-                        <div class="feature-category">Web Development</div>
-                        <h3 class="feature-title">Front End Development Certification</h3>
-                        <p class="feature-excerpt">Certified in modern front-end technologies including HTML5, CSS3, and JavaScript frameworks.</p>
-                        <a href="#" class="read-more">View Credential</a>
+                        <div class="feature-category">Robotics Competition</div>
+                        <h3 class="feature-title">Robolutions Regional 2024</h3>
+                        <p class="feature-excerpt">
+                            October 9-11, 2024 <br>
+
+                            The University of Baguio proudly spearheaded this year’s Regional Robolution 3, a three-day spectacle of cutting-edge robotics, fierce competition, and collaborative innovation. Here’s how it went down:</p>
+                        <a href="#" class="read-more" data-target="robolution-content">Read More</a>
                     </div>
                 </div>
-                <div class="feature-card">
+                <!--technosprint-->
+                <div class="feature-card certificate-card">
                     <div class="feature-image">
-                        <img src="/api/placeholder/400/300" alt="Blockchain Certification">
+                        <img src="./images/uc-technosprint.jpg" alt="Certificate 2">
                     </div>
                     <div class="feature-content">
-                        <div class="feature-category">Blockchain</div>
-                        <h3 class="feature-title">Ethereum Developer Certification</h3>
-                        <p class="feature-excerpt">Certified in Solidity smart contract development and decentralized application architecture.</p>
-                        <a href="#" class="read-more">View Credential</a>
+                        <div class="feature-category">Technopreneurship - Competition</div>
+                        <h3 class="feature-title">TechnoSprint 2025</h3>
+                        <p class="feature-excerpt">On February 7, 2025, the very first 𝗧𝗲𝗰𝗵𝗻𝗼𝗦𝗽𝗿𝗶𝗻𝘁 took place, bringing together students from the University of the Cordilleras and other institutions for an exciting 𝗼𝗻𝗲-𝗱𝗮𝘆 𝗶𝗻𝗻𝗼𝘃𝗮𝘁𝗶𝗼𝗻 𝘀𝗽𝗿𝗶𝗻𝘁. Participants explored design thinking and technopreneurship, gaining valuable skills to solve real-world problems.</p>
+                        <a href="#" class="read-more" data-target="technosprint-content">Read More</a>
                     </div>
                 </div>
-                <div class="feature-card">
+                <!--blank add more-->
+                <div class="feature-card certificate-card">
                     <div class="feature-image">
-                        <img src="/api/placeholder/400/300" alt="UI/UX Certification">
+                        <img src="/api/placeholder/200/150" alt="Certificate 3">
                     </div>
                     <div class="feature-content">
-                        <div class="feature-category">Design</div>
-                        <h3 class="feature-title">UI/UX Design Certification</h3>
-                        <p class="feature-excerpt">Certified in user experience principles, wireframing, and interactive design.</p>
-                        <a href="#" class="read-more">View Credential</a>
+                        <div class="feature-category">---</div>
+                        <h3 class="feature-title">---</h3>
+                        <p class="feature-excerpt">---</p>
+                        <a href="#" class="read-more" data-target="cert3-content">Read More</a>
                     </div>
+                </div>
+                
+                <!-- Hidden content sections -->
+                <!--robolution hidden content-->
+                <div id="robolution-content" class="hidden-content">
+                    <h4 style="font-size: 20px;">Robolution Regional: Robotics and Automation Competition </h4>
+                    <div class="certificate-details">
+                        <h4>Competition Details</h4>
+                        <ul class="detail-list">
+                            🔌 DAY 1: POWERING UP WITH KNOWLEDGE <br>
+                            E-Rovoutika’s Seminar (Oct 9) ignited the spark at UB’s FGB Hall, uniting students from SLU, UC, BCU, and CAR schools to strategize for the battles ahead.  <br> <br>
+                            
+                            🤖 DAY 2: ROBOTS TAKE CENTER STAGE <br>
+                            Dr. Ellen Halover (UB IT Dean) kicked off the competitions, supported by sponsors Erovoutika and muRata. <br> <br>
+                            
+                            Erobot V1 & V2 wowed crowds with precision and creativity. <br>
+                            
+                            🎯 DAY 3: CLIMAX & GLORY <br>
+                            Quiz Bee, Erovouthon, Freestyle Presentations, and Sumobot crowned the brightest minds: <br> <br>
+                            
+                            🏆 CHAMPION: Saint Louis University <br>
+                            
+                            🥇 1st Runner-Up: University of Baguio <br>
+                            
+                            🥈 2nd Runner-Up: Manaoag National High School <br>
+                            
+                            Top teams earned slots at International Robolution 2024 in Makati! <br> <br>
+                            
+                            💡 THE IMPACT: A testament to the Cordillera’s rising tech talent, proving that collaboration and grit drive the future of robotics. <br> <br>
+                            
+                            📢 Shoutout to all participants, mentors, and sponsors—you’ve set the bar higher! <br>
+                        </ul>
+                    </div>
+                    <br>
+                    <!-- Additional description -->
+                    <p>Baguio Central University's College of Business Administration, Computer Science students joined the ROBOLUTION REGIONAL: CORDILLERA ADMINISTRATIVE REGION, which took place at the University of Baguio in partnership with Erovoutika Robotics and Automation Solution Inc. last October 9 to 11.</p>
+
+                    <!-- Image gallery -->
+                    <div class="detail-gallery">
+                        <img src="./images/robolution-prep.jpg" alt="robolution-prep">
+                        <img src="./images/robolution.jpg" alt="photo-op">
+                        <img src="./images/prepday-robolution.jpg" alt="perpday-seminar">
+                        <img src="./images/struggle.jpg" alt="smile">
+                        <img src="./images/stand.jpg" alt="standing">
+                        <img src="./images/backshot.jpg" alt="backshot">
+                    </div>
+                </div>
+
+                <!--technosprint hidden content-->
+                <div id="technosprint-content" class="hidden-content">
+                    <h4>Competition Details</h4>
+                    <p> • Event Date: February 7, 2025 <br>
+
+                        • Participants: Students from the University of the Cordilleras, Baguio Central University and other institutions <br>
+                        
+                        • Format: A one-day innovation sprint focused on design thinking and technopreneurship <br>
+                        
+                        Key Activities: <br>
+                        
+                        • Hands-on learning to solve real-world problems <br>
+                        
+                        • Mentorship from experts of the Saleng Mentors Group <br>
+                        
+                        • Multidisciplinary teamwork—students collaborated across different colleges <br>
+                        
+                        • Development of sustainable solutions using creativity and critical thinking <br>
+                        
+                        • Finale: A pitch competition where teams presented ideas to a judging panel <br>
+                        
+                        • Winning teams received awards for the best and most impactful solutions <br>
+                        
+                        Impact: <br>More than just a competition—a day of learning, teamwork, and innovation <br>
+                        
+                        Legacy: <br>The first-ever TechnoSprint set the stage for future events, proving that young minds can drive meaningful change when given the right platform. <br>
+                    </p>
+
+                    <div class="detail-gallery">
+                        <img src="./images/technosprint-uc.jpg" alt="technosprint-uc">
+                        <img src="./images/uc-technosprint.jpg" alt="photo-op">
+                        <img src="./images/coinex-UC.jpg" alt="coinex">
+                        
+                    </div>
+                </div>
+
+                <!--blank add more-->
+                <div id="cert3-content" class="hidden-content">
+                    <h4>Certificate 3 Details</h4>
+                    <p>Additional information about certificate 3 will be displayed here.</p>
                 </div>
             </div>
         </section>
+        
+        <!-- nfts -->
+        <section class="activity-section" style="background-color: beige;">
+            <h2 class="section-title">Current NFT HODLings</h2>
+            <h3>Only Showing NFTs That I Want to Show Publicly </h3>
+        <div class="featured-grid">
+            
+            <div class="feature-card" style="max-width: 200px;">
+                <div class="feature-image">                    
+                    <img src="./images-nft/CJB4MRr4Q-iiS9VYP5Zw6POwXphCZd0RaalJTj2GWXg.png" alt="sharkz #8042">
+                </div>
+                <div class="feature-content">
+                    <h3>Sharkz #8042</h3>
+                    <div class="link-container">
+                        <a href="https://suivision.xyz/object/0xb4d5668bf184673987ccdb3ef95026284d079d80351b7e113a19b4d0bedfbb3e" target="_blank" class="link-button">View on-chain</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="feature-card" style="max-width: 200px;">
+                <div class="feature-image" >
+                    <img src="./images-nft/qVkbmB4Q3hbX2-h-2Y768H4XLg05UwgRhglh6hzNAnI.png" alt="sharkz #2687">
+                </div>
+                <div class="feature-content">
+                    <h3>Sharkz #2687</h3>
+                    <div class="link-container">
+                        <a href="https://suivision.xyz/object/0x545254534dcf4c61fa1defc41a102408ee7b626a5e107b6794fbc13d42d6c0dc" target="_blank" class="link-button">View on-chain</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card" style="max-width: 200px;">
+                <div class="feature-image" >
+                    <img src="./images-nft/a8ddb2da29cb6d24406b1382b6050a.png" alt="ronke 143128">
+                </div>
+                <div class="feature-content">
+                    <h3>Ronke on a Sailing Ship #143128</h3>
+                    <div class="link-container">
+                        <a href="https://marketplace.roninchain.com/collections/ronke-on-a-sailing-ship/143128" target="_blank" class="link-button">View on-chain</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="feature-card" style="max-width: 200px;">
+                <div class="feature-image" >
+                    <img src="./images-nft/e5d7b43fd86eed8f5adb315692759e.png" alt="jin 193878">
+                </div>
+                <div class="feature-content">
+                    <h3>Jin on a Sailing Ship #193878</h3>
+                    <div class="link-container">
+                        <a href="https://marketplace.roninchain.com/collections/jin-on-a-sailing-ship/193878" target="_blank" class="link-button">View on-chain</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card" style="max-width: 200px;">
+                <div class="feature-image" >
+                    <img src="./images-nft/A7JT1KjhqWOht2jqDrqC_F0QQpVPrC5MwkHKGj368HfBssn63082KTvbQblV7V4J6Fy5umzfxqyIMBJoavmVVvr+2FMQWaU7pVLXE2s3hivWlf5ofQx24O6bXjlfOKFTRxkS1368xqwc_0dPaSxnSw==.png" alt="bitman">
+                </div>
+                <div class="feature-content">
+                    <h3>Bitman - 77-Bit Original Skins</h3>
+                    <div class="link-container">
+                        <a href="https://abscan.org/tx/0xd2f2ccb7f87e14d656a6b69a7d4bbab19ac03acbbcfeb2f2c395edf7f460651f" target="_blank" class="link-button">View on-chain</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
     </div>
+
+    
+
+        
 
     <footer>
         <div class="container footer-content">
@@ -257,5 +550,40 @@
             <div>©2025 Jeff C. Pais | Last Updated: April 2025</div>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const readMoreLinks = document.querySelectorAll('.read-more');
+        
+        readMoreLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get the target ID from data-target attribute
+                const targetId = this.getAttribute('data-target');
+                const hiddenContent = document.getElementById(targetId);
+                
+                if (hiddenContent.style.display === 'block') {
+                    hiddenContent.style.display = 'none';
+                    this.classList.remove('active');
+                } else {
+                    // Hide all other hidden content sections first
+                    document.querySelectorAll('.hidden-content').forEach(function(content) {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Remove active class from all read more links
+                    document.querySelectorAll('.read-more').forEach(function(btn) {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Show the selected content and mark this link as active
+                    hiddenContent.style.display = 'block';
+                    this.classList.add('active');
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
