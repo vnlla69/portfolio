@@ -112,6 +112,18 @@
             background: linear-gradient(to bottom right, #0b3866, #4e8cff);
         }
 
+        .card.blue-green{
+            background: linear-gradient(to bottom left, #75e78e, #0f357c);
+        }
+
+        .card.green-light{
+            background: linear-gradient(to bottom left, #5ed883, #026691);
+        }
+
+        .card.blue-dark{
+            background: linear-gradient(to right, #7db3e9, #0655e9);
+        }
+
         .card.yellow{
             background: linear-gradient(to bottom right, #3b3b3a, #ffff70);
         }
@@ -136,6 +148,7 @@
         .card-description {
             font-size: 14px;
             opacity: 0.9;
+            
         }
         
         .card-footer {
@@ -145,9 +158,7 @@
             align-items: center;
             font-size: 12px;
         }
-        
    
-        
         .footer {
             border-top: 1px solid #2d3748;
             padding: 15px 20px;
@@ -173,7 +184,7 @@
             text-align: center;  
             position: relative;
             padding-bottom: 3px;
-
+            font-size: 20px;
         }  
         /* Link Button Style */  
         .link-button {  
@@ -194,6 +205,18 @@
             transform: translateY(-2px);  
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
         }  
+
+        .nav-link {
+            text-decoration: none;
+            color: #d1d0d0;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
     </style>
 </head>
 <body>
@@ -203,13 +226,15 @@
                 <span class="emoji">🔥</span>
                 <span>Centralized Exchanges and Decentralized Exchanges</span>
             </div>
-            
+            <div class="link-button">
+            <a href="./index.html" class="nav-link" >Go Back to Webpage</a>
+            </div>
         </div>
     </div>
     
     <h1>Centralized Exchanges</h1>
     <div class="grid">
-       
+       <!--okx-->
         <div class="card black">
             <div class="card-title"><img src="./images-icons/OKX_logo.svg" alt="okx Logo" width="150" height="50"></div>
             <div class="card-description">OKX is a leading global cryptocurrency exchange offering spot, futures, and margin trading, along with DeFi and Web3 services.</div>
@@ -219,53 +244,83 @@
                 </div>
             </div>
         </div>
-
+        <!--bitget-->
         <div class="card blue">
             <div class="card-title"><img src="./images-icons/Logo_Biget.svg.png" alt="bitget Logo" width="150" height="50"></div>
             <div class="card-description">Bitget is a derivatives-focused cryptocurrency exchange known for its copy trading features and sponsorship deals with sports entities like Juventus FC.</div>
             <div class="card-footer">
                 <div class="link-container">
-                <a href="" target="_blank" class="link-button">Go to Bitget</a>
+                <a href="https://share.bitget.com/u/SAJVV7XT" target="_blank" class="link-button">Go to Bitget</a>
                 </div>
             </div>
         </div>
-
+        <!--bybit-->
         <div class="card black">
             <div class="card-title"><img src="./images-icons/Bybit_Logo.svg" alt="bybit Logo" width="150" height="50"></div>
             <div class="card-description">Bybit is a cryptocurrency exchange platform that specializes in crypto derivatives trading with a user-friendly interface and high liquidity.</div>
             <div class="card-footer">
                 <div class="link-container">
-                <a href="" target="_blank" class="link-button">Go to Bybit</a>
+                <a href="https://www.bybitglobal.com/invite?ref=29OP5LL" target="_blank" class="link-button">Go to Bybit</a>
                 </div>
             </div>
         </div>
-
+        <!--kucoin-->
         <div class="card green">
             <div class="card-title"><img src="./images-icons/KUCOIN.svg.png" alt="kucoin Logo" width="150" height="50"></div>
             <div class="card-description">KuCoin is a global cryptocurrency exchange platform known as "The People's Exchange" that offers a wide variety of trading pairs and innovative features like trading bots.</div>
             <div class="card-footer">
                 <div class="link-container">
-                    <a href="" target="_blank" class="link-button">Go to KuCoin</a>
+                    <a href="https://www.kucoin.com/r/rf/Z6CZ3DWT" target="_blank" class="link-button">Go to KuCoin</a>
                 </div>
             </div>
         </div>
-
+        <!--mexc-->
         <div class="card blue">
             <div class="card-title"><img src="./images-icons/Mexcglobal.svg" alt="mexc Logo" width="150" height="50"></div>
             <div class="card-description">MEXC is a user-friendly global cryptocurrency exchange that supports a wide range of altcoins and emerging tokens with competitive trading fees.</div>
             <div class="card-footer">
                 <div class="link-container">
-                <a href="" target="_blank" class="link-button">Go to MEXC</a>
+                <a href="https://promote.mexc.com/r/tlHI4yH2" target="_blank" class="link-button">Go to MEXC</a>
                 </div>
             </div>
         </div>
-        
+        <!--binance-->
         <div class="card yellow">
             <div class="card-title"><img src="./images-icons/Binance_logo.svg.png" alt="binance Logo" width="150" height="50"></div>
             <div class="card-description">Binance is the world's largest cryptocurrency exchange by trading volume, offering hundreds of digital assets and a comprehensive ecosystem of crypto services.</div>
             <div class="card-footer">
                 <div class="link-container">
-                    <a href="" target="_blank" class="link-button">Go to Binance</a>
+                    <a href="https://www.binance.com/referral/earn-together/refertoearn2000usdc/claim?hl=en-US&ref=GRO_14352_AXAOC&utm_source=Lite_web_account" target="_blank" class="link-button">Go to Binance</a>
+                </div>
+            </div>
+        </div>
+        <!--gateio-->
+        <div class="card blue-green">
+            <div class="card-title"><img src="./images-icons/gateio.svg" alt="gateio Logo" width="150" height="50"></div>
+            <div class="card-description">GateIO offers low-fee spot and futures trading, staking rewards, lending, and early access to new crypto projects. Gate.io has been a trusted platform since 2013.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                <a href="https://www.gate.io/signup/VLEXAVBDUW?ref_type=102" target="_blank" class="link-button">Go to GateIO</a>
+                </div>
+            </div>
+        </div>
+        <!--coinex-->
+        <div class="card green-light">
+            <div class="card-title"><img src="./images-icons/coinex.png" alt="coinex Logo" width="150" height="50"></div>
+            <div class="card-description">CoinEx is a secure crypto exchange offering spot, futures, and margin trading with low fees. Supports 500+ coins, staking and lending. Simple, fast, and trusted since 2017.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                <a href="https://www.coinex.com/register?rc=7ggac&channel=Referral" target="_blank" class="link-button">Go to CoinEx</a>
+                </div>
+            </div>
+        </div>
+        <!--bingx-->
+        <div class="card blue-dark">
+            <div class="card-title"><img src="./images-icons/Bingx.png" alt="bingx Logo" width="150" height="50"></div>
+            <div class="card-description">Secure crypto trading for 500+ assets. Spot, futures & copy trading. Trusted globally.</div>
+            <div class="card-footer">
+                <div class="link-container">
+                <a href="https://bingx.com/invite/GZUJJQ/" target="_blank" class="link-button">Go to BingX</a>
                 </div>
             </div>
         </div>
@@ -275,16 +330,72 @@
     <h1>Decentralized Exchanges</h1>
     <h2>Proceed with caution, Decentralized Exchanges are more technical and require deeper research.</h2>
     <div class="grid">
+
         <div class="card">
-            <div class="card-title"><img src="./images-icons/meteora.png" alt="meteora Logo" max-width="150" height="50"></div>
+            <div class="card-title"><img src="./images-icons/meteora.png" alt="meteora Logo" max-width="150" height="50">  Meteora</div>
+            <div class="card-description">Meteora Exchange is a cutting-edge decentralized trading platform built on Solana, offering lightning-fast transactions and low fees. </div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="https://www.meteora.ag/" target="_blank" class="link-button">Go to Meteora</a>
+                    </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><img src="./images-icons/jupiter.svg" alt="jupiter Logo" max-width="200" height="50">  Jupiter</div>
             <div class="card-description">---</div>
-            <div class="card-footer">---</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="---" target="_blank" class="link-button">Go to </a>
+                    </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><img src="./images-icons/raydium.png" alt="raydium Logo" max-width="200" height="50">  Raydium</div>
+            <div class="card-description">---</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="---" target="_blank" class="link-button">Go to </a>
+                    </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><img src="./images-icons/uniswap.png" alt="uniswap Logo" max-width="200" height="50">  Uniswap</div>
+            <div class="card-description">---</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="---" target="_blank" class="link-button">Go to </a>
+                    </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><img src="./images-icons/pancakeswap.png" alt="pancakeswap Logo" max-width="200" height="50">  PancakeSwap</div>
+            <div class="card-description">---</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="---" target="_blank" class="link-button">Go to </a>
+                    </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><img src="./images-icons/sushiswap" alt="sushiswap Logo" max-width="200" height="50">  SushiSwap</div>
+            <div class="card-description">---</div>
+            <div class="card-footer">
+                <div class="link-container">
+                    <a href="---" target="_blank" class="link-button">Go to </a>
+                    </div>
+            </div>
         </div>
     </div>
 
     
     <div class="footer">
         <span>Exchanges posted may use my referral code.</span>
+
     </div>
 </body>
 </html>
