@@ -15,7 +15,6 @@
     padding: 12px 20px; 
     border-radius: 8px;  
     text-decoration: none;  
-    font-size: 10px;
     font-weight: bold;  
     transition: all 0.3s ease;
     position: relative;
@@ -81,15 +80,16 @@
 /* style for the certificate images */
 .detail-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* creates exactly 3 equal columns */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* creates exactly 3 equal columns */
     gap: 15px;
     margin-top: 15px;
 }
 
 .detail-gallery img {
-    width: 500px;
+    width: 100%; /* Changed from fixed 500px to be responsive */
+    max-width: 500px; /* Added max-width to prevent too large images */
     max-height: 300px;
-    object-fit: cover; /* maintains aspect ratio while filling the fixed dimensions */
+    object-fit: cover;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -134,7 +134,6 @@
     padding: 30px;
     position: relative;
 }
-    
 
 /* for the certificate feature images */
 .certificate-card .feature-image {
@@ -150,7 +149,6 @@
     width: auto;
     object-fit: contain;
 }
-
 
 </style>
     
@@ -228,6 +226,16 @@
 
                 <div class="feature-card">
                     <div class="feature-image">
+                        <img src="./images-icons/blockchain.jpg" alt="Blockchain">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-category">Web3</div>
+                        <h3 class="feature-title">Blockchain Development</h3>
+                        <p class="feature-excerpt">Solidity, smart contracts, decentralized applications, and understanding of Ethereum ecosystem.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image">
                         <img src="/api/placeholder/400/300" alt="UI/UX">
                     </div>
                     <div class="feature-content">
@@ -236,18 +244,6 @@
                         <p class="feature-excerpt">User-centered design principles, wireframing, prototyping, and creating intuitive interfaces.</p>
                     </div>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-image">
-                        <img src="/api/placeholder/400/300" alt="Blockchain">
-                    </div>
-                    <div class="feature-content">
-                        <div class="feature-category">Web3</div>
-                        <h3 class="feature-title">Blockchain Development</h3>
-                        <p class="feature-excerpt">Solidity, smart contracts, decentralized applications, and understanding of Ethereum ecosystem.</p>
-                    </div>
-                </div>
-                
             </div>
         </section>
 
@@ -367,9 +363,9 @@
                             E-Rovoutika’s Seminar (Oct 9) ignited the spark at UB’s FGB Hall, uniting students from SLU, UC, BCU, and CAR schools to strategize for the battles ahead.  <br> <br>
                             
                             🤖 DAY 2: ROBOTS TAKE CENTER STAGE <br>
-                            Dr. Ellen Halover (UB IT Dean) kicked off the competitions, supported by sponsors Erovoutika and muRata. <br>
+                            Dr. Ellen Halover (UB IT Dean) kicked off the competitions, supported by sponsors Erovoutika and muRata. <br> <br>
                             
-                            Erobot V1 & V2 wowed crowds with precision and creativity. <br> <br>
+                            Erobot V1 & V2 wowed crowds with precision and creativity. <br>
                             
                             🎯 DAY 3: CLIMAX & GLORY <br>
                             Quiz Bee, Erovouthon, Freestyle Presentations, and Sumobot crowned the brightest minds: <br> <br>
@@ -389,7 +385,7 @@
                     </div>
                     <br>
                     <!-- Additional description -->
-                    <p>Baguio Central University's College of Business Administration, Computer Science students joined the ROBOLUTION REGIONAL: CORDILLERA ADMINISTRATIVE REGION, which took place at the University of Baguio in partnership with Erovoutika Robotics and Automation Solution Inc. last October 9 to 11.</p>
+                    <p>Baguio Central University's College of Business Administration, Computer Science students, Jeff Pais, Erick Gaceta and Jessica Lorrine Inay, joined the ROBOLUTION REGIONAL: CORDILLERA ADMINISTRATIVE REGION, which took place at the University of Baguio in partnership with Erovoutika Robotics and Automation Solution Inc. last October 9 to 11. Baguio Central University's High School Department were also present and joined the competitions as well.</p>
 
                     <!-- Image gallery -->
                     <div class="detail-gallery">
@@ -452,63 +448,64 @@
             <h3>Only Showing NFTs That I Want to Show Publicly </h3>
         <div class="featured-grid">
             
-            <div class="feature-card" style="max-width: 200px;">
+            <div class="feature-card" style="max-width: 200px; position: relative; min-height: 330px;">
                 <div class="feature-image">                    
                     <img src="./images-nft/CJB4MRr4Q-iiS9VYP5Zw6POwXphCZd0RaalJTj2GWXg.png" alt="sharkz #8042">
                 </div>
-                <div class="feature-content" style="display: flex; flex-direction: column; height: 100%;">
-                    <h3 style="margin-bottom: auto;">Sharkz #8042</h3>
-                    <div class="link-container">
-                        <a href="https://suivision.xyz/object/0xb4d5668bf184673987ccdb3ef95026284d079d80351b7e113a19b4d0bedfbb3e" target="_blank" class="link-button">View on-chain</a>
-                    </div>
+                <div class="feature-content">
+                    <h3>Sharkz #8042</h3>
                 </div>
+                <div style="position: absolute; bottom: 10px; ">
+                    <a href="https://suivision.xyz/object/0xb4d5668bf184673987ccdb3ef95026284d079d80351b7e113a19b4d0bedfbb3e" target="_blank" class="link-button">View on-chain</a>
+                </div>
+                
             </div>
     
-            <div class="feature-card" style="max-width: 200px;">
+            <div class="feature-card" style="max-width: 200px; position: relative; min-height: 330px;">
                 <div class="feature-image" >
                     <img src="./images-nft/qVkbmB4Q3hbX2-h-2Y768H4XLg05UwgRhglh6hzNAnI.png" alt="sharkz #2687">
                 </div>
-                <div class="feature-content" style="display: flex; flex-direction: column; height: 100%;">
-                    <h3 style="margin-bottom: auto;">Sharkz #2687</h3>
-                    <div class="link-container">
-                        <a href="https://suivision.xyz/object/0x545254534dcf4c61fa1defc41a102408ee7b626a5e107b6794fbc13d42d6c0dc" target="_blank" class="link-button">View on-chain</a>
-                    </div>
+                <div class="feature-content">
+                    <h3>Sharkz #2687</h3>
+                </div>
+                <div style="position: absolute; bottom: 10px; ">
+                    <a href="https://suivision.xyz/object/0x545254534dcf4c61fa1defc41a102408ee7b626a5e107b6794fbc13d42d6c0dc" target="_blank" class="link-button">View on-chain</a>
                 </div>
             </div>
 
-            <div class="feature-card" style="max-width: 200px;">
+            <div class="feature-card" style="max-width: 200px; position: relative; min-height: 330px;">
                 <div class="feature-image" >
                     <img src="./images-nft/a8ddb2da29cb6d24406b1382b6050a.png" alt="ronke 143128">
                 </div>
                 <div class="feature-content">
-                    <h3>Ronke on a Sailing Ship #143128</h3>
-                    <div class="link-container">
-                        <a href="https://marketplace.roninchain.com/collections/ronke-on-a-sailing-ship/143128" target="_blank" class="link-button">View on-chain</a>
-                    </div>
+                    <h3>Ronke on a Sailing Ship #143128</h3>    
+                </div>
+                <div style="position: absolute; bottom: 10px; ">
+                    <a href="https://marketplace.roninchain.com/collections/ronke-on-a-sailing-ship/143128" target="_blank" class="link-button">View on-chain</a>
                 </div>
             </div>
     
-            <div class="feature-card" style="max-width: 200px;">
+            <div class="feature-card" style="max-width: 200px; position: relative; min-height: 330px;">
                 <div class="feature-image" >
                     <img src="./images-nft/e5d7b43fd86eed8f5adb315692759e.png" alt="jin 193878">
                 </div>
                 <div class="feature-content">
                     <h3>Jin on a Sailing Ship #193878</h3>
-                    <div class="link-container">
-                        <a href="https://marketplace.roninchain.com/collections/jin-on-a-sailing-ship/193878" target="_blank" class="link-button">View on-chain</a>
-                    </div>
+                </div>
+                <div style="position: absolute; bottom: 10px; ">
+                    <a href="https://marketplace.roninchain.com/collections/jin-on-a-sailing-ship/193878" target="_blank" class="link-button">View on-chain</a>
                 </div>
             </div>
 
-            <div class="feature-card" style="max-width: 200px;">
+            <div class="feature-card" style="max-width: 200px; position: relative; min-height: 330px;">
                 <div class="feature-image" >
                     <img src="./images-nft/A7JT1KjhqWOht2jqDrqC_F0QQpVPrC5MwkHKGj368HfBssn63082KTvbQblV7V4J6Fy5umzfxqyIMBJoavmVVvr+2FMQWaU7pVLXE2s3hivWlf5ofQx24O6bXjlfOKFTRxkS1368xqwc_0dPaSxnSw==.png" alt="bitman">
                 </div>
                 <div class="feature-content">
                     <h3>Bitman - 77-Bit Original Skins</h3>
-                    <div class="link-container">
-                        <a href="https://abscan.org/tx/0xd2f2ccb7f87e14d656a6b69a7d4bbab19ac03acbbcfeb2f2c395edf7f460651f" target="_blank" class="link-button">View on-chain</a>
-                    </div>
+                </div>
+                <div style="position: absolute; bottom: 10px; ">
+                    <a href="https://abscan.org/tx/0xd2f2ccb7f87e14d656a6b69a7d4bbab19ac03acbbcfeb2f2c395edf7f460651f" target="_blank" class="link-button">View on-chain</a>
                 </div>
             </div>
         </div>
