@@ -77,6 +77,26 @@
     width: 100%; /* ensure it takes up full width */
 }
 
+/* Add media query for mobile view */
+@media (max-width: 768px) {
+    .hidden-content {
+        grid-column: auto; /* Reset the grid column span */
+        margin: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Make hidden content appear right after its parent card */
+    .certificate-card {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .certificate-card + .hidden-content {
+        order: 1; /* Place it after the card */
+    }
+}
+
 /* style for the certificate images */
 .detail-gallery {
     display: grid;
