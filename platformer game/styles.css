@@ -1,0 +1,325 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+    font-family: 'Press Start 2P', cursive;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  .cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+  
+  .cloud1 {
+    width: 100px;
+    height: 60px;
+    top: 50px;
+    left: 20%;
+    animation: cloudMove 30s linear infinite;
+  }
+  
+  .cloud2 {
+    width: 150px;
+    height: 90px;
+    top: 100px;
+    left: 60%;
+    animation: cloudMove 40s linear infinite;
+  }
+  
+  .cloud3 {
+    width: 80px;
+    height: 50px;
+    top: 150px;
+    left: 40%;
+    animation: cloudMove 50s linear infinite;
+  }
+  
+  @keyframes cloudMove {
+    from { transform: translateX(-150px); }
+    to { transform: translateX(100vw); }
+  }
+  
+  #game-container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 20px auto;
+    border: 5px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+  }
+  
+  #score-display {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+  }
+  
+  #score, #high-score {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  #stickman {
+    position: absolute;
+    width: 30px;
+    height: 60px;
+    bottom: 80px;
+    left: 50px;
+    z-index: 5;
+    transition: transform 0.1s;
+  }
+  
+  #stickman .head {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #333;
+    border-radius: 50%;
+    top: 0;
+    left: 5px;
+  }
+  
+  #stickman .body {
+    position: absolute;
+    width: 4px;
+    height: 25px;
+    background: #333;
+    top: 20px;
+    left: 13px;
+  }
+  
+  #stickman .arm {
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    background: #333;
+    top: 25px;
+  }
+  
+  #stickman .left-arm {
+    left: 0;
+    transform-origin: right center;
+  }
+  
+  #stickman .right-arm {
+    left: 16px;
+    transform-origin: left center;
+  }
+  
+  #stickman .leg {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background: #333;
+    top: 45px;
+  }
+  
+  #stickman .left-leg {
+    left: 8px;
+    transform-origin: top center;
+  }
+  
+  #stickman .right-leg {
+    left: 18px;
+    transform-origin: top center;
+  }
+  
+  #ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, #228B22, #1E8449);
+    border-top: 5px solid #145A32;
+  }
+  
+  .platform {
+    position: absolute;
+    height: 20px;
+    background: linear-gradient(to bottom, #8B4513, #A0522D);
+    border-radius: 10px;
+    box-shadow: 0 4px 0 #5D2906, inset 0 2px 5px rgba(255, 255, 255, 0.2);
+  }
+  
+  #controls {
+    width: 800px;
+    margin: 10px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .control-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    color: white;
+    font-size: 24px;
+    border: none;
+    box-shadow: 0 4px 0 #1a5276, 0 5px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.1s;
+  }
+  
+  .control-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1a5276;
+  }
+  
+  #game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    z-index: 20;
+    border: 3px solid #e74c3c;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+  }
+  
+  #game-over h2 {
+    color: #e74c3c;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  #restart-btn {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow: 0 4px 0 #1e8449;
+    transition: all 0.1s;
+  }
+  
+  #restart-btn:hover {
+    background: linear-gradient(to bottom, #27ae60, #219653);
+  }
+  
+  #restart-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #1e8449;
+  }
+  
+  .obstacle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    border-radius: 50%;
+    box-shadow: 0 4px 0 #7b241c, inset 0 2px 5px rgba(255, 255, 255, 0.2);
+    animation: pulse 1s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+  
+  .coin {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), inset -3px -3px 5px rgba(0, 0, 0, 0.2);
+    animation: spin 2s infinite linear, glow 1.5s infinite alternate;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 5px #FFD700; }
+    to { box-shadow: 0 0 15px #FFD700; }
+  }
+  
+  #start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    color: white;
+  }
+  
+  #start-screen h1 {
+    color: #2ecc71;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.7);
+  }
+  
+  #start-screen p {
+    margin-bottom: 40px;
+    font-size: 18px;
+  }
+  
+  #start-btn {
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow: 0 5px 0 #1a5276;
+    transition: all 0.1s;
+  }
+  
+  #start-btn:hover {
+    background: linear-gradient(to bottom, #2980b9, #2472a4);
+  }
+  
+  #start-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 1px 0 #1a5276;
+  }
