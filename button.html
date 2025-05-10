@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Useless Button™</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        #useless-button {
+            padding: 20px 40px;
+            font-size: 24px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa3a3);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #useless-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        #useless-button:active {
+            transform: translateY(0);
+        }
+        
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <button id="useless-button">Click Me</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        
+
+        const button = document.getElementById('useless-button');
+        const message = document.getElementById('message');
+        const uselessMessages = [
+            "Wow. Nothing happened.",
+            "Congratulations! You clicked a button.",
+            "This button is legally prohibited from being useful.",
+            "Error 404: Purpose not found.",
+            "If this button did something, it would be lying.",
+            "Your click has been recorded and ignored.",
+            "Imagine if this did something. (It doesn't.)",
+            "This button is powered by 100% pure disappointment.",
+            "You've wasted 3 seconds of your life. Want to try again?",
+            "The server responded with: 'lol no'",
+            "Wow, You're really persistent. Impressive!",
+            "I hope your parents are proud of you.",
+
+        ];
+        let clickCount = localStorage.getItem('uselessClicks') || 0;
+
+        button.addEventListener('click', () => {
+            clickCount++;
+            localStorage.setItem('uselessClicks', clickCount);
+            message.textContent = `${uselessMessages[Math.floor(Math.random() * uselessMessages.length)]} (Clicked ${clickCount} times)`;
+
+            message.textContent = randomMessage;
+
+            // Button wiggle animation
+            button.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                button.style.animation = '';
+            }, 500);
+            createFakeConfetti();
+
+            
+        });
+
+        function createFakeConfetti() {
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = `${Math.random() * 100}%`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.opacity = '0.7';
+                document.body.appendChild(confetti);
+                
+                // Animate confetti (but it disappears instantly)
+                setTimeout(() => {
+                    confetti.style.transition = 'all 0.5s';
+                    confetti.style.opacity = '0';
+                    confetti.style.transform = 'translateY(-100px)';
+                    setTimeout(() => {
+                        document.body.removeChild(confetti);
+                    }, 500);
+                }, 10);
+            }
+        }
+
+
+    </script>
+
+    
+</body>
+</html>
