@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Budget Diary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="diary">
+        <div class="diary-spine">
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+        </div>
+        <div class="diary-content">
+            <nav class="diary-nav">
+                <a href="index.html" class="nav-link active">Budget Tracker</a>
+                <a href="goals.html" class="nav-link">Savings Goals</a>
+            </nav>
+            <h1>My Budget Diary</h1>
+            
+            <div class="budget-section">
+                <h2>Monthly Budget</h2>
+                <div class="currency-selector">
+                    <label for="currency">Currency:</label>
+                    <select id="currency" onchange="changeCurrency()">
+                        <option value="PHP">Philippine Peso (₱)</option>
+                        <option value="USD">US Dollar ($)</option>
+                        <option value="EUR">Euro (€)</option>
+                        <option value="JPY">Japanese Yen (¥)</option>
+                        <option value="GBP">British Pound (£)</option>
+                        <option value="AUD">Australian Dollar (A$)</option>
+                        <option value="SGD">Singapore Dollar (S$)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="budget-input" placeholder="Enter your budget">
+                    <button onclick="setBudget()">Set Budget</button>
+                </div>
+                <div class="budget-display">
+                    <p>Total Budget: <span id="total-budget">₱0</span></p>
+                    <p>Spent: <span id="total-spent">₱0</span></p>
+                    <p>Remaining: <span id="remaining-budget">₱0</span></p>
+                </div>
+            </div>
+
+            <div class="expense-section">
+                <h2>Add New Expense</h2>
+                <div class="expense-form">
+                    <input type="date" id="expense-date">
+                    <input type="text" id="expense-description" placeholder="Description">
+                    <select id="expense-category">
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="bills">Bills</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="number" id="expense-amount" placeholder="Amount">
+                    <button onclick="addExpense()">Add Expense</button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2>Spending History</h2>
+                <div id="expense-list">
+                    <!-- Expenses will be added here -->
+                </div>
+            </div>
+
+            <div class="actions-section">
+                <button class="reset-button" onclick="resetBudget()">Reset Budget & Expenses</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Buddy - Budget NotePad Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Gochi+Hand&display=swap');
+        
+        :root {
+            --notepad-color: #FFF5C2;
+            --spine-color: #F2DCC9;
+            --border-color: #E3BC9A;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Gochi Hand', cursive;
+        }
+        
+        .notepad-container {
+            perspective: 1000px;
+        }
+        
+        .notepad {
+            background-color: var(--notepad-color);
+            border: 2px solid var(--border-color);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .spine {
+            background-color: var(--spine-color);
+            height: 20px;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+        
+        .spine-rivets {
+            display: flex;
+            gap: 10px;
+            padding: 4px 0;
+        }
+        
+        .spine-rivet {
+            width: 6px;
+            height: 6px;
+            background-color: #c9a98e;
+            border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset;
+        }
+        
+        .page {
+            padding: 20px;
+            min-height: 500px;
+            position: relative;
+        }
+        
+        .lined-paper {
+            background-image: linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+            background-size: 100% 28px;
+            background-position-y: 32px;
+        }
+        
+        .tab {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: #FF9AA2;
+            transition: all 0.3s ease;
+        }
+        
+        .chip {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 16px;
+        }
+        
+        .entry-item {
+            transition: all 0.2s ease;
+        }
+        
+        .entry-item:hover {
+            background-color: rgba(255,255,255,0.5);
+            transform: translateX(5px);
+        }
+        
+        .edit-btn:hover {
+            color: #4CAF50;
+        }
+        
+        .delete-btn:hover {
+            color: #FF5252;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: fall 5s linear infinite;
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen py-10">
+    <div class="container mx-auto px-4 max-w-3xl notepad-container">
+        <div class="notepad">
+            <div class="spine">
+                <div class="spine-rivets">
+                    <div class="spine-rivet"></div>
+                    <div class="spine-rivet"></div>
+                    <div class="spine-rivet"></div>
+                </div>
+            </div>
+            <div class="page lined-paper">
+                <h1 class="text-4xl text-center mb-6" style="font-family: 'Delius Swash Caps', cursive; color: #FF9AA2;">
+                    Budget Buddy ✏️
+                </h1>
+                
+                <div class="flex border-b mb-6 relative">
+                    <div class="flex-1 text-center pb-2 tab cursor-pointer" onclick="switchTab('budget')">
+                        <i class="fas fa-wallet mr-2"></i> Budget
+                    </div>
+                    <div class="flex-1 text-center pb-2 tab cursor-pointer" onclick="switchTab('spending')">
+                        <i class="fas fa-shopping-cart mr-2"></i> Spending
+                    </div>
+                    <div class="flex-1 text-center pb-2 tab cursor-pointer" onclick="switchTab('savings')">
+                        <i class="fas fa-piggy-bank mr-2"></i> Savings
+                    </div>
+                    <div class="tab-indicator" id="tabIndicator" style="width: 33.33%; left: 0;"></div>
+                </div>
+                
+                <!-- Budget Tab -->
+                <div id="budgetTab" class="tab-content">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <label class="mr-2 text-lg"><i class="fas fa-wallet mr-1"></i> Monthly Budget:</label>
+                            <input type="number" id="monthlyBudget" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500 w-32" placeholder="$0">
+                            <button onclick="setBudget()" class="ml-2 px-3 py-1 bg-pink-300 text-white rounded-full hover:bg-pink-400 transition">Set</button>
+                        </div>
+                        <div>
+                            <p class="text-lg">Budget Left: <span id="budgetLeft" class="font-bold">$0</span></p>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-1">
+                                <div id="budgetProgress" class="bg-green-400 h-4 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl mb-2 flex items-center"><i class="fas fa-list-ul mr-2"></i> Recent Budget Entries</h3>
+                    <div id="budgetEntries" class="mb-4">
+                        <!-- Entries will be added here -->
+                    </div>
+                </div>
+                
+                <!-- Spending Tab -->
+                <div id="spendingTab" class="tab-content hidden">
+                    <div class="mb-6">
+                        <div class="flex flex-wrap items-center mb-4 gap-2">
+                            <input type="text" id="spendingName" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500 flex-1 min-w-[150px]" placeholder="What did you buy?">
+                            <input type="number" id="spendingAmount" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500 w-24" placeholder="$0">
+                            <select id="spendingCategory" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500">
+                                <option value="food">🍔 Food</option>
+                                <option value="entertainment">🎬 Entertainment</option>
+                                <option value="clothes">👕 Clothes</option>
+                                <option value="school">📚 School</option>
+                                <option value="other">✨ Other</option>
+                            </select>
+                            <button onclick="addSpending()" class="px-3 py-1 bg-pink-300 text-white rounded-full hover:bg-pink-400 transition">
+                                <i class="fas fa-plus mr-1"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl mb-2 flex items-center"><i class="fas fa-history mr-2"></i> Spending History</h3>
+                    <div id="spendingEntries" class="mb-4">
+                        <!-- Entries will be added here -->
+                    </div>
+                </div>
+                
+                <!-- Savings Tab -->
+                <div id="savingsTab" class="tab-content hidden">
+                    <div class="mb-6">
+                        <div class="flex flex-wrap items-center mb-4 gap-2">
+                            <input type="text" id="savingsGoal" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500 flex-1 min-w-[150px]" placeholder="Goal Name">
+                            <input type="number" id="savingsTarget" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500 w-24" placeholder="$ Target">
+                            <button onclick="addSavingsGoal()" class="px-3 py-1 bg-pink-300 text-white rounded-full hover:bg-pink-400 transition">
+                                <i class="fas fa-plus mr-1"></i> Add Goal
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl mb-2 flex items-center"><i class="fas fa-bullseye mr-2"></i> Savings Goals</h3>
+                    <div id="savingsGoals" class="mb-4">
+                        <!-- Goals will be added here -->
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <label class="mr-2 text-lg"><i class="fas fa-coins mr-1"></i> Add to Savings:</label>
+                            <input type="number" id="addToSavings" class="border-b border-gray-400 bg-transparent px-2 py-1 focus:outline-none focus:border-pink-500 w-24" placeholder="$0">
+                            <button onclick="addToSavings()" class="ml-2 px-3 py-1 bg-pink-300 text-white rounded-full hover:bg-pink-400 transition">Add</button>
+                        </div>
+                        <div>
+                            <p class="text-lg">Total Saved: <span id="totalSaved" class="font-bold">$0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentTab = 'budget';
+        let budgetData = {
+            monthlyBudget: 0,
+            remainingBudget: 0,
+            entries: []
+        };
+        let spendingData = [];
+        let savingsData = {
+            total: 0,
+            goals: []
+        };
+        
+        // DOM Content Loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load data from localStorage
+            loadData();
+            
+            // Initialize UI
+            updateBudgetUI();
+            updateSpendingUI();
+            updateSavingsUI();
+            
+            // Add animation to title
+            const title = document.querySelector('h1');
+            title.classList.add('animate-pulse');
+            setTimeout(() => title.classList.remove('animate-pulse'), 2000);
+        });
+        
+        // Tab switching
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show selected tab
+            document.getElementById(`${tab}Tab`).classList.remove('hidden');
+            
+            // Move tab indicator
+            const tabIndicator = document.getElementById('tabIndicator');
+            let leftPosition;
+            switch(tab) {
+                case 'budget': leftPosition = '0'; break;
+                case 'spending': leftPosition = '33.33%'; break;
+                case 'savings': leftPosition = '66.66%'; break;
+            }
+            tabIndicator.style.left = leftPosition;
+        }
+        
+        // Budget functions
+        function setBudget() {
+            const budgetInput = document.getElementById('monthlyBudget');
+            const amount = parseFloat(budgetInput.value) || 0;
+            
+            budgetData.monthlyBudget = amount;
+            budgetData.remainingBudget = amount;
+            
+            updateBudgetUI();
+            saveData();
+            budgetInput.value = '';
+            
+            // Show confetti for new budget
+            if (amount > 0) {
+                showConfetti();
+            }
+        }
+        
+        function updateBudgetUI() {
+            document.getElementById('monthlyBudget').value = budgetData.monthlyBudget;
+            document.getElementById('budgetLeft').textContent = `$${budgetData.remainingBudget.toFixed(2)}`;
+            
+            const budgetProgress = document.getElementById('budgetProgress');
+            if (budgetData.monthlyBudget > 0) {
+                const percentage = ((budgetData.monthlyBudget - budgetData.remainingBudget) / budgetData.monthlyBudget) * 100;
+                budgetProgress.style.width = `${percentage}%`;
+                
+                if (percentage > 80) {
+                    budgetProgress.classList.remove('bg-green-400', 'bg-yellow-400');
+                    budgetProgress.classList.add('bg-red-400');
+                } else if (percentage > 50) {
+                    budgetProgress.classList.remove('bg-green-400', 'bg-red-400');
+                    budgetProgress.classList.add('bg-yellow-400');
+                } else {
+                    budgetProgress.classList.remove('bg-yellow-400', 'bg-red-400');
+                    budgetProgress.classList.add('bg-green-400');
+                }
+            } else {
+                budgetProgress.style.width = '0%';
+            }
+            
+            // Update entries list
+            const entriesContainer = document.getElementById('budgetEntries');
+            entriesContainer.innerHTML = '';
+            
+            if (budgetData.entries.length === 0) {
+                entriesContainer.innerHTML = '<p class="text-gray-500 italic">No budget entries yet. Add some from the Spending tab!</p>';
+            } else {
+                budgetData.entries.forEach((entry, index) => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'entry-item flex justify-between items-center py-2 px-3 mb-1 bg-white bg-opacity-50 rounded';
+                    entryDiv.innerHTML = `
+                        <div>
+                            <span class="font-bold">$${entry.amount.toFixed(2)}</span> - ${entry.name}
+                            <span class="chip px-2 py-1 ml-2 rounded-full text-xs bg-${getCategoryColor(entry.category)}-100 text-${getCategoryColor(entry.category)}-800">${getCategoryIcon(entry.category)} ${entry.category}</span>
+                        </div>
+                        <div>
+                            <button class="edit-btn mr-2 text-gray-500 hover:text-yellow-500" onclick="editEntry(${index}, 'budget')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-btn text-gray-500 hover:text-red-500" onclick="deleteEntry(${index}, 'budget')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    entriesContainer.appendChild(entryDiv);
+                });
+            }
+        }
+        
+        // Spending functions
+        function addSpending() {
+            const nameInput = document.getElementById('spendingName');
+            const amountInput = document.getElementById('spendingAmount');
+            const categorySelect = document.getElementById('spendingCategory');
+            
+            const name = nameInput.value.trim();
+            const amount = parseFloat(amountInput.value) || 0;
+            const category = categorySelect.value;
+            
+            if (!name || amount <= 0) {
+                alert('Please fill out all fields correctly!');
+                return;
+            }
+            
+            // Add to spending data
+            const newSpending = {
+                name,
+                amount,
+                category,
+                date: new Date().toLocaleDateString()
+            };
+            spendingData.unshift(newSpending);
+            
+            // Deduct from budget
+            if (budgetData.remainingBudget >= amount) {
+                budgetData.remainingBudget -= amount;
+                budgetData.entries.unshift(newSpending);
+            } else {
+                alert("You've exceeded your budget with this spending!");
+            }
+            
+            // Reset inputs
+            nameInput.value = '';
+            amountInput.value = '';
+            
+            // Update UI
+            updateSpendingUI();
+            updateBudgetUI();
+            saveData();
+        }
+        
+        function updateSpendingUI() {
+            const entriesContainer = document.getElementById('spendingEntries');
+            entriesContainer.innerHTML = '';
+            
+            if (spendingData.length === 0) {
+                entriesContainer.innerHTML = '<p class="text-gray-500 italic">No spending entries yet. Add your first purchase!</p>';
+            } else {
+                spendingData.forEach((entry, index) => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.className = 'entry-item flex justify-between items-center py-2 px-3 mb-1 bg-white bg-opacity-50 rounded';
+                    entryDiv.innerHTML = `
+                        <div>
+                            <span class="font-bold">$${entry.amount.toFixed(2)}</span> - ${entry.name}
+                            <span class="chip px-2 py-1 ml-2 rounded-full text-xs bg-${getCategoryColor(entry.category)}-100 text-${getCategoryColor(entry.category)}-800">${getCategoryIcon(entry.category)} ${entry.category}</span>
+                            <span class="text-xs ml-2 text-gray-500">${entry.date}</span>
+                        </div>
+                        <div>
+                            <button class="edit-btn mr-2 text-gray-500 hover:text-yellow-500" onclick="editEntry(${index}, 'spending')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-btn text-gray-500 hover:text-red-500" onclick="deleteEntry(${index}, 'spending')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    entriesContainer.appendChild(entryDiv);
+                });
+            }
+            
+            // Calculate total spending
+            const totalSpending = spendingData.reduce((total, entry) => total + entry.amount, 0);
+            document.getElementById('totalSpending').textContent = `$${totalSpending.toFixed(2)}`;
+        }
+        
+        // Savings functions
+        function addSavingsGoal() {
+            const goalInput = document.getElementById('savingsGoal');
+            const targetInput = document.getElementById('savingsTarget');
+            
+            const goal = goalInput.value.trim();
+            const target = parseFloat(targetInput.value) || 0;
+            
+            if (!goal || target <= 0) {
+                alert('Please fill out all fields correctly!');
+                return;
+            }
+            
+            // Add to savings goals
+            savingsData.goals.unshift({
+                name: goal,
+                target,
+                saved: 0
+            });
+            
+            // Reset inputs
+            goalInput.value = '';
+            targetInput.value = '';
+            
+            updateSavingsUI();
+            saveData();
+        }
+        
+        function addToSavings() {
+            const addInput = document.getElementById('addToSavings');
+            const amount = parseFloat(addInput.value) || 0;
+            
+            if (amount <= 0) {
+                alert('Please enter a valid amount!');
+                return;
+            }
+            
+            // Add to total savings
+            savingsData.total += amount;
+            
+            // Reset input
+            addInput.value = '';
+            
+            updateSavingsUI();
+            saveData();
+            
+            // Check if any goals are completed
+            checkGoalCompletion();
+        }
+        
+        function updateSavingsUI() {
+            document.getElementById('totalSaved').textContent = `$${savingsData.total.toFixed(2)}`;
+            
+            const goalsContainer = document.getElementById('savingsGoals');
+            goalsContainer.innerHTML = '';
+            
+            if (savingsData.goals.length === 0) {
+                goalsContainer.innerHTML = '<p class="text-gray-500 italic">No savings goals yet. Add your first goal!</p>';
+            } else {
+                savingsData.goals.forEach((goal, index) => {
+                    const goalDiv = document.createElement('div');
+                    goalDiv.className = 'entry-item py-3 px-4 mb-3 bg-white bg-opacity-50 rounded-lg';
+                    
+                    const progressPercentage = Math.min((goal.saved / goal.target) * 100, 100);
+                    const isComplete = goal.saved >= goal.target;
+                    
+                    goalDiv.innerHTML = `
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-bold text-lg ${isComplete ? 'line-through text-green-500' : ''}">${goal.name}</h4>
+                            <div>
+                                <span class="font-bold">$${goal.saved.toFixed(2)}</span> / <span>$${goal.target.toFixed(2)}</span>
+                                ${isComplete ? '<span class="ml-2 text-green-500"><i class="fas fa-check-circle"></i></span>' : ''}
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                            <div class="bg-blue-400 h-3 rounded-full" style="width: ${progressPercentage}%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <div class="flex items-center">
+                                <button class="text-blue-500 hover:text-blue-700 mr-3" onclick="editGoal(${index})">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </button>
+                                <button class="text-red-500 hover:text-red-700" onclick="deleteGoal(${index})">
+                                    <i class="fas fa-trash-alt mr-1"></i> Delete
+                                </button>
+                            </div>
+                            <button class="text-green-500 hover:text-green-700" onclick="addToGoal(${index})">
+                                <i class="fas fa-plus-circle mr-1"></i> Add Money
+                            </button>
+                        </div>
+                    `;
+                    goalsContainer.appendChild(goalDiv);
+                });
+            }
+        }
+        
+        function addToGoal(index) {
+            const amount = parseFloat(prompt(`How much do you want to add to "${savingsData.goals[index].name}"?`, "10")) || 0;
+            
+            if (amount > 0) {
+                if (savingsData.total < amount) {
+                    alert("You don't have enough savings for this!");
+                    return;
+                }
+                
+                savingsData.goals[index].saved += amount;
+                savingsData.total -= amount;
+                
+                updateSavingsUI();
+                saveData();
+                
+                // Check if this completed the goal
+                if (savingsData.goals[index].saved >= savingsData.goals[index].target) {
+                    showConfetti();
+                    alert(`🎉 Congratulations! You've reached your "${savingsData.goals[index].name}" goal!`);
+                }
+            }
+        }
+        
+        function editGoal(index) {
+            const goal = savingsData.goals[index];
+            const newName = prompt("Edit goal name:", goal.name);
+            const newTarget = parseFloat(prompt("Edit target amount:", goal.target)) || 0;
+            
+            if (newName !== null && newTarget > 0) {
+                goal.name = newName;
+                goal.target = newTarget;
+                
+                updateSavingsUI();
+                saveData();
+            }
+        }
+        
+        function deleteGoal(index) {
+            if (confirm(`Are you sure you want to delete the "${savingsData.goals[index].name}" goal?`)) {
+                // Return saved money to total
+                savingsData.total += savingsData.goals[index].saved;
+                
+                savingsData.goals.splice(index, 1);
+                updateSavingsUI();
+                saveData();
+            }
+        }
+        
+        function checkGoalCompletion() {
+            let anyComplete = false;
+            
+            savingsData.goals.forEach(goal => {
+                if (savingsData.total >= goal.target && goal.saved < goal.target) {
+                    anyComplete = true;
+                    goal.saved = goal.target;
+                }
+            });
+            
+            if (anyComplete) {
+                showConfetti();
+                updateSavingsUI();
+                saveData();
+            }
+        }
+        
+        // Edit and Delete functions
+        function editEntry(index, type) {
+            let entry, callback;
+            
+            if (type === 'budget') {
+                entry = budgetData.entries[index];
+                callback = () => updateBudgetUI();
+            } else {
+                entry = spendingData[index];
+                callback = () => updateSpendingUI();
+            }
+            
+            const newName = prompt("Edit name:", entry.name);
+            const newAmount = parseFloat(prompt("Edit amount:", entry.amount)) || 0;
+            
+            if (newName !== null && newAmount > 0) {
+                // First, we need to handle the budget difference
+                if (type === 'budget') {
+                    budgetData.remainingBudget += (entry.amount - newAmount);
+                }
+                
+                // Update the entry
+                entry.name = newName;
+                entry.amount = newAmount;
+                
+                callback();
+                updateBudgetUI();
+                saveData();
+            }
+        }
+        
+        function deleteEntry(index, type) {
+            if (!confirm("Are you sure you want to delete this entry?")) return;
+            
+            if (type === 'budget') {
+                // Return the amount to the remaining budget
+                budgetData.remainingBudget += budgetData.entries[index].amount;
+                budgetData.entries.splice(index, 1);
+                updateBudgetUI();
+            } else {
+                // For spending, we might want to return the amount to budget if it was deducted
+                const spendingEntry = spendingData[index];
+                const budgetIndex = budgetData.entries.findIndex(
+                    e => e.name === spendingEntry.name && 
+                         e.amount === spendingEntry.amount && 
+                         e.category === spendingEntry.category
+                );
+                
+                if (budgetIndex !== -1) {
+                    budgetData.remainingBudget += budgetData.entries[budgetIndex].amount;
+                    budgetData.entries.splice(budgetIndex, 1);
+                }
+                
+                spendingData.splice(index, 1);
+                updateSpendingUI();
+                updateBudgetUI();
+            }
+            
+            saveData();
+        }
+        
+        // Helper functions
+        function getCategoryIcon(category) {
+            const icons = {
+                'food': '🍔',
+                'entertainment': '🎬',
+                'clothes': '👕',
+                'school': '📚',
+                'other': '✨'
+            };
+            return icons[category] || '💸';
+        }
+        
+        function getCategoryColor(category) {
+            const colors = {
+                'food': 'red',
+                'entertainment': 'purple',
+                'clothes': 'blue',
+                'school': 'indigo',
+                'other': 'gray'
+            };
+            return colors[category] || 'gray';
+        }
+        
+        function showConfetti() {
+            const colors = ['#FF9AA2', '#FFB7B2', '#FFDAC1', '#E2F0CB', '#B5EAD7', '#C7CEEA'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+        
+        // Data persistence
+        function saveData() {
+            localStorage.setItem('budgetData', JSON.stringify(budgetData));
+            localStorage.setItem('spendingData', JSON.stringify(spendingData));
+            localStorage.setItem('savingsData', JSON.stringify(savingsData));
+        }
+        
+        function loadData() {
+            const savedBudget = localStorage.getItem('budgetData');
+            const savedSpending = localStorage.getItem('spendingData');
+            const savedSavings = localStorage.getItem('savingsData');
+            
+            if (savedBudget) budgetData = JSON.parse(savedBudget);
+            if (savedSpending) spendingData = JSON.parse(savedSpending);
+            if (savedSavings) savingsData = JSON.parse(savedSavings);
+        }
+    </script>
+</body>
+</html>

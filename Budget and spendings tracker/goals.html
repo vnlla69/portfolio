@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Goals - My Budget Diary</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="goals.css">
+</head>
+<body>
+    <div class="diary">
+        <div class="diary-spine">
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+            <div class="spine-ring"></div>
+        </div>
+        <div class="diary-content">
+            <nav class="diary-nav">
+                <a href="index.html" class="nav-link">Budget Tracker</a>
+                <a href="goals.html" class="nav-link active">Savings Goals</a>
+            </nav>
+            <h1>My Savings Goals</h1>
+            
+            <div class="goals-section">
+                <h2>Add New Goal</h2>
+                <div class="goal-form">
+                    <input type="text" id="goal-name" placeholder="Goal Name">
+                    <input type="number" id="goal-amount" placeholder="Target Amount">
+                    <input type="date" id="goal-deadline">
+                    <button onclick="addGoal()">Add Goal</button>
+                </div>
+            </div>
+
+            <div class="goals-list-section">
+                <h2>My Goals</h2>
+                <div id="goals-list">
+                    <!-- Goals will be added here dynamically -->
+                </div>
+            </div>
+
+            <div class="actions-section">
+                <button class="reset-button" onclick="resetGoals()">Reset All Goals</button>
+            </div>
+        </div>
+    </div>
+    <script src="goals.js"></script>
+</body>
+</html>
