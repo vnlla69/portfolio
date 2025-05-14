@@ -4,8 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web3 Games</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0f1218;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid #2d3748;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 20px;
+        }
+        
+        .title .emoji {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(to bottom right, #3a1c71, #d76d77);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card.black {
+            background: linear-gradient(to bottom right, #494949, #0f0f0f);
+        }
+        
+        .card.purple {
+            background: linear-gradient(to bottom right, #4d18a1, #9970d8);
+        }
+        
+        .card.green {
+            background: linear-gradient(to bottom right, #134e5e, #20a576);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            max-width: fit-content;
+            margin-bottom: 5px;
+        }
+        
+        .card-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .link-container {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 3px;
+            font-size: 20px;
+        }
+        
+        .link-button {
+            display: block;
+            max-width: auto;
+            background: #b59aff;
+            color: white;
+            padding: 12px 20px;
+            align-content: center;
+            margin-top: auto;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .link-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #d1d0d0;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
-    will add more games here
+    <div class="header">
+        <div class="header-left" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="title">
+                <span class="emoji">🎮</span>
+                <span style="font-size: 30px;">Web3 Games</span>
+            </div>
+            <a href="./index.html" target="_blank" class="nav-link" style="padding: 8px 16px; background-color: #f0f0f0; border-radius: 4px; text-decoration: none; color: #333;">Go Back to Webpage</a>
+        </div>
+    </div>
+    
+    <div class="grid">
+        <!-- Add your Web3 games cards here -->
+    </div>
 </body>
 </html>
