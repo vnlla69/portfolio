@@ -3,9 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect</title>
+    <title>Connect - vnlla magazine</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Connect page specific styles */
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .connect-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .connect-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-color: #ff5722;
+        }
+
+        .connect-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .connect-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .connect-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff5722;
+            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+        }
+
+        .submit-btn {
+            background: #ff5722;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #f4511e;
+            transform: translateY(-2px);
+        }
+
+        /* Add a magazine-style cover section */
+        .connect-cover {
+            height: 40vh;
+            background: linear-gradient(45deg, #ff5722, #ff9800);
+            margin-bottom: 40px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .connect-cover h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .connect-cover p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-    THIS IS A BLANK PAGE, or im just too lazy to put my contacts hUmU
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">vnlla<span>magazine</span></a>
+            <nav class="nav-menu">
+                <a href="./profile.html" class="nav-link">PROFILE</a>
+                <a href="./projects.html" class="nav-link">PROJECTS</a>
+                <a href="./skills.html" class="nav-link">SKILLS</a>
+                <a href="./connect.html" class="nav-link active">CONNECT</a>
+                <a href="./web3.html" class="nav-link">WEB3</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="connect-cover">
+            <div>
+                <h1>Let's Connect</h1>
+                <p>Get in touch with me, but don't touch me.</p>
+            </div>
+        </div>
+
+        <div class="connect-grid">
+            <a href="#" class="connect-card">
+                <div class="connect-icon">📧</div>
+                <h3>Email</h3>
+                <p>[Your Email]</p>
+            </a>
+            
+            <a href="#" class="connect-card">
+                <div class="connect-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>[Your LinkedIn]</p>
+            </a>
+            
+            <a href="#" class="connect-card">
+                <div class="connect-icon">💻</div>
+                <h3>GitHub</h3>
+                <p>[Your GitHub]</p>
+            </a>
+            
+            <a href="#" class="connect-card">
+                <div class="connect-icon">🐦</div>
+                <h3>Twitter</h3>
+                <p>[Your Twitter]</p>
+            </a>
+        </div>
+
+        <section class="contact-form">
+            <h2 class="section-title">Send Me a Message</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3 class="footer-title">Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="./profile.html">Profile</a></li>
+                    <li><a href="./projects.html">Projects</a></li>
+                    <li><a href="#">Resume</a></li>
+                    <li><a href="./skills.html">Skills</a></li>
+                    <li><a href="./connect.html">Connect</a></li>
+                    <li><a href="./web3.html">Web3</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <div>©2025 Jeff C. Pais | Last Updated: May 2025</div>
+        </div>
+    </footer>
 </body>
 </html>
