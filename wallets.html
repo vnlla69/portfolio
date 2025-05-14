@@ -3,9 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallets</title>
+    <title>Crypto Wallets</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0f1218;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid #2d3748;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            margin-right: 20px;
+        }
+        
+        .title .emoji {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .card {
+            background: linear-gradient(to bottom right, #3a1c71, #d76d77);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .link-button {
+            text-decoration: none;
+            color: #d1d0d0;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    will add more wallets here
+    <div class="header">
+        <div class="header-left" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="title">
+                <span class="emoji">👛</span>
+                <span style="font-size: 30px;">Crypto Wallets</span>
+            </div>
+            <a href="./index.html" target="_blank" class="nav-link" style="padding: 8px 16px; background-color: #f0f0f0; border-radius: 4px; text-decoration: none; color: #333;">Go Back to Webpage</a>
+        </div>
+    </div>
+    
+    <div class="grid">
+        <!-- Wallet cards will be added here -->
+    </div>
 </body>
 </html>
