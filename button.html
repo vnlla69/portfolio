@@ -70,76 +70,73 @@
     </div>
 
     <script>
+    const button = document.getElementById('useless-button');
+    const message = document.getElementById('message');
+    const uselessMessages = [
+        "Wow. Nothing happened.",
+        "Congratulations! You clicked a button.",
+        "This button is legally prohibited from being useful.",
+        "Error 404: Purpose not found.",
+        "If this button did something, it would be lying.",
+        "Your click has been recorded and ignored.",
+        "Imagine if this did something. (It doesn't.)",
+        "This button is powered by 100% pure disappointment.",
+        "You've wasted 3 seconds of your life. Want to try again?",
+        "The server responded with: 'lol no'",
+        "Wow, You're really persistent. Impressive!",
+        "I hope your parents are proud of you.",
+    ];
+
+    // Ensure clickCount is a number (localStorage stores strings)
+    let clickCount = parseInt(localStorage.getItem('uselessClicks')) || 0;
+
+    button.addEventListener('click', () => {
+        clickCount++;
+        localStorage.setItem('uselessClicks', clickCount);
         
+        // Pick a random message
+        const randomMessage = uselessMessages[Math.floor(Math.random() * uselessMessages.length)];
+        message.textContent = `${randomMessage} (Clicked ${clickCount} times)`;
 
-        const button = document.getElementById('useless-button');
-        const message = document.getElementById('message');
-        const uselessMessages = [
-            "Wow. Nothing happened.",
-            "Congratulations! You clicked a button.",
-            "This button is legally prohibited from being useful.",
-            "Error 404: Purpose not found.",
-            "If this button did something, it would be lying.",
-            "Your click has been recorded and ignored.",
-            "Imagine if this did something. (It doesn't.)",
-            "This button is powered by 100% pure disappointment.",
-            "You've wasted 3 seconds of your life. Want to try again?",
-            "The server responded with: 'lol no'",
-            "Wow, You're really persistent. Impressive!",
-            "I hope your parents are proud of you.",
+        // Button wiggle animation
+        button.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+            button.style.animation = '';
+        }, 500);
 
-        ];
-        let clickCount = localStorage.getItem('uselessClicks') || 0;
+        createFakeConfetti();
+        rickRoll(clickCount);
+    });
 
-        button.addEventListener('click', () => {
-            clickCount++;
-            localStorage.setItem('uselessClicks', clickCount);
-            message.textContent = `${uselessMessages[Math.floor(Math.random() * uselessMessages.length)]} (Clicked ${clickCount} times)`;
+    function rickRoll(numba) {
+        const x = 69;
+        if (numba === x || numba > x) {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }
+    }
 
-            message.textContent = randomMessage;
-
-            // Button wiggle animation
-            button.style.animation = 'shake 0.5s';
-            setTimeout(() => {
-                button.style.animation = '';
-            }, 500);
-            createFakeConfetti(uselessMessages);
-            rickRoll(clickCount);
-
+    function createFakeConfetti() {
+        for (let i = 0; i < 20; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = `${Math.random() * 100}%`;
+            confetti.style.top = `${Math.random() * 100}%`;
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.opacity = '0.7';
+            document.body.appendChild(confetti);
             
-        });
-
-        function rickRoll(numba){
-            let x = 69;
-            if (numba === x || numba > 69){
-                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            }
-        }
-
-        function createFakeConfetti() {
-            for (let i = 0; i < 20; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = `${Math.random() * 100}%`;
-                confetti.style.top = `${Math.random() * 100}%`;
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                confetti.style.opacity = '0.7';
-                document.body.appendChild(confetti);
-                
-                // Animate confetti (but it disappears instantly)
+            // Animate confetti (but it disappears instantly)
+            setTimeout(() => {
+                confetti.style.transition = 'all 0.5s';
+                confetti.style.opacity = '0';
+                confetti.style.transform = 'translateY(-100px)';
                 setTimeout(() => {
-                    confetti.style.transition = 'all 0.5s';
-                    confetti.style.opacity = '0';
-                    confetti.style.transform = 'translateY(-100px)';
-                    setTimeout(() => {
-                        document.body.removeChild(confetti);
-                    }, 500);
-                }, 10);
-            }
+                    document.body.removeChild(confetti);
+                }, 500);
+            }, 10);
         }
-
-
-    </script>
+    }
+</script>
 
     
 </body>
