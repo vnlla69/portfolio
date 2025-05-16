@@ -103,15 +103,15 @@
             setTimeout(() => {
                 button.style.animation = '';
             }, 500);
-            createFakeConfetti();
-            rickRoll();
+            createFakeConfetti(uselessMessages);
+            rickRoll(clickCount);
 
             
         });
 
-        function rickRoll(){
+        function rickRoll(numba){
             let x = 69;
-            if (clickCount === x){
+            if (numba === x){
                 window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
             }
         }
