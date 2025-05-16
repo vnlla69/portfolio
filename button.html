@@ -104,9 +104,17 @@
                 button.style.animation = '';
             }, 500);
             createFakeConfetti();
+            rickRoll();
 
             
         });
+
+        function rickRoll(){
+            let x = 69;
+            if (clickCount === x){
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            }
+        }
 
         function createFakeConfetti() {
             for (let i = 0; i < 20; i++) {
