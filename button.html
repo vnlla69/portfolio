@@ -7,6 +7,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -43,6 +44,28 @@
             text-align: center;
             font-size: 18px;
             color: #666;
+            margin-bottom: 20px;
+        }
+        
+        #reset-useless-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: linear-gradient(45deg, #6b6bff, #a3a3ff);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(107, 107, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        #reset-useless-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(107, 107, 255, 0.4);
+        }
+        
+        #reset-useless-button:active {
+            transform: translateY(0);
         }
         
         .confetti {
@@ -60,7 +83,6 @@
             75% { transform: translateX(-5px); }
             100% { transform: translateX(0); }
         }
-
     </style>
 </head>
 <body>
@@ -76,7 +98,7 @@
     <script>
     const button = document.getElementById('useless-button');
     const message = document.getElementById('message');
-        const resetUselessness = document.getElementbyId('reset-useless-button');
+    const resetUselessness = document.getElementById('reset-useless-button');
     const uselessMessages = [
         "Wow. Nothing happened.",
         "Congratulations! You clicked a button.",
@@ -97,7 +119,9 @@
 
     resetUselessness.addEventListener('click', () => {
         clickCount = 0;
-    }
+        localStorage.setItem('uselessClicks', clickCount);
+        message.textContent = "Counter reset! Ready for more disappointment.";
+    });
 
     button.addEventListener('click', () => {
         clickCount++;
@@ -145,8 +169,6 @@
             }, 10);
         }
     }
-</script>
-
-    
+    </script>
 </body>
 </html>
