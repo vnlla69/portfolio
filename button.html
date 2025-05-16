@@ -69,9 +69,14 @@
         <div id="message"></div>
     </div>
 
+    <div style="text-align: center;">
+        <button id="reset-useless-button">Click Me to Reset</button>
+    </div>
+
     <script>
     const button = document.getElementById('useless-button');
     const message = document.getElementById('message');
+        const resetUselessness = document.getElementbyId('reset-useless-button');
     const uselessMessages = [
         "Wow. Nothing happened.",
         "Congratulations! You clicked a button.",
@@ -89,6 +94,10 @@
 
     // Ensure clickCount is a number (localStorage stores strings)
     let clickCount = parseInt(localStorage.getItem('uselessClicks')) || 0;
+
+    resetUselessness.addEventListener('click', () => {
+        clickCount = 0;
+    }
 
     button.addEventListener('click', () => {
         clickCount++;
